@@ -1,0 +1,98 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        { "name": "Ink",        "slug": "ink",       "color": "#0F0E0A" },
+        { "name": "Slate",      "slug": "slate",     "color": "#2E3440" },
+        { "name": "Slate Mid",  "slug": "slate-mid", "color": "#4C566A" },
+        { "name": "Gold",       "slug": "gold",      "color": "#C9A84C" },
+        { "name": "Gold Dark",  "slug": "gold-dark", "color": "#8B6914" },
+        { "name": "Gold Light", "slug": "gold-light","color": "#E8D49A" },
+        { "name": "Cream",      "slug": "cream",     "color": "#F7F4EE" },
+        { "name": "White",      "slug": "white",     "color": "#FFFFFF" }
+      ],
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultPalette": false
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Cormorant Garamond', Georgia, serif",
+          "slug": "serif",
+          "name": "Cormorant Garamond"
+        },
+        {
+          "fontFamily": "'DM Sans', system-ui, sans-serif",
+          "slug": "sans",
+          "name": "DM Sans"
+        },
+        {
+          "fontFamily": "'DM Mono', monospace",
+          "slug": "mono",
+          "name": "DM Mono"
+        }
+      ],
+      "fontSizes": [
+        { "name": "Small",       "slug": "small",       "size": "0.875rem" },
+        { "name": "Normal",      "slug": "normal",      "size": "1rem" },
+        { "name": "Medium",      "slug": "medium",      "size": "1.2rem" },
+        { "name": "Large",       "slug": "large",       "size": "1.6rem" },
+        { "name": "XL",          "slug": "xl",          "size": "2.4rem" },
+        { "name": "XXL",         "slug": "xxl",         "size": "3.5rem" }
+      ],
+      "customFontSize": true
+    },
+    "spacing": {
+      "units": ["px", "em", "rem", "%", "vw"]
+    },
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#F7F4EE",
+      "text": "#0F0E0A"
+    },
+    "typography": {
+      "fontFamily": "'DM Sans', system-ui, sans-serif",
+      "fontSize": "1rem",
+      "lineHeight": "1.7"
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontFamily": "'Cormorant Garamond', Georgia, serif",
+          "fontWeight": "300",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "'Cormorant Garamond', Georgia, serif",
+          "fontWeight": "300",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "'Cormorant Garamond', Georgia, serif",
+          "fontWeight": "600"
+        }
+      },
+      "link": {
+        "color": { "text": "#8B6914" },
+        ":hover": { "color": { "text": "#C9A84C" } }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}
