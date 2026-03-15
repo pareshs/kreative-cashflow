@@ -46,15 +46,33 @@ get_header(); ?>
 <?php endif; ?>
 
 <div class="container section-pad">
-  <div style="display:grid;grid-template-columns:1fr <?php echo is_page() ? '0' : '320px'; ?>;gap:60px;align-items:start;">
+  <div style="display:grid;grid-template-columns:<?php echo is_page() ? '1fr' : '1fr 320px'; ?>;gap:60px;align-items:start;">
 
     <main id="site-main" role="main">
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        <div class="entry-content">
-          <?php the_content(); ?>
-        </div>
+        
+        <!-- Pages: Centered content, no sidebar -->
+        <?php if ( is_page() ) : ?>
+          <div class="entry-content" style="max-width:900px;margin:0 auto;">
+            <?php the_content(); ?>
+          </div>
 
-        <?php if ( is_single() ) : ?>
+          <!-- Page last updated -->
+          <?php
+          $modified = get_the_modified_date();
+          $published = get_the_date();
+          if ( $modified !== $published ) : ?>
+            <div style="margin-top:60px;padding-top:32px;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate-lt);text-align:center;">
+              <?php esc_html_e( 'Last updated:', 'kreative-cashflow' ); ?> <?php echo esc_html( $modified ); ?>
+            </div>
+          <?php endif; ?>
+
+        <!-- Blog Posts: Standard layout with sidebar -->
+        <?php else : ?>
+          <div class="entry-content">
+            <?php the_content(); ?>
+          </div>
+
           <!-- Post Tags -->
           <?php the_tags( '<div style="margin-top:40px;display:flex;gap:8px;flex-wrap:wrap;">', '', '</div>' ); ?>
 
@@ -93,8 +111,8 @@ get_header(); ?>
               <?php comments_template(); ?>
             </div>
           <?php endif; ?>
-
         <?php endif; ?>
+
       </article>
     </main>
 

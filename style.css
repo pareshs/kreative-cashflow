@@ -1477,6 +1477,108 @@ blockquote cite {
 }
 
 /* ============================================================
+   PAGE TEMPLATES — ENHANCED STYLING
+   ============================================================ */
+
+/* Clean page wrapper — no blog styling */
+.page-template-default .entry-content,
+.page-template-template-full-width .entry-content,
+.page-template-template-split .entry-content {
+  max-width: none;
+}
+
+/* Remove post metadata on pages */
+.page .blog-meta,
+.page .author-box,
+.page .post-navigation {
+  display: none;
+}
+
+/* Full-width template specific */
+.page-template-template-full-width .entry-content h2 {
+  margin-top: 2em;
+  font-size: 2rem;
+}
+
+.page-template-template-full-width .entry-content h3 {
+  margin-top: 1.5em;
+  font-size: 1.4rem;
+}
+
+/* Split layout responsive improvements */
+.template-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.template-split-sticky {
+  position: sticky;
+  top: 120px;
+}
+
+@media (max-width: 960px) {
+  .template-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .template-split-sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Page content cards */
+.content-card {
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.content-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Page features grid */
+.page-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.page-feature {
+  padding: 32px;
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+}
+
+.page-feature h4 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.page-feature p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  max-width: none;
+}
+
+@media (max-width: 768px) {
+  .page-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
    FORMS (WP / WPForms / CF7 compatibility)
    ============================================================ */
 input[type="text"],

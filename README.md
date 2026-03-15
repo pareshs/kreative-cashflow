@@ -29,25 +29,52 @@ Built on the v1 brand identity: Cormorant Garamond + DM Sans + DM Mono typograph
 
 ```
 kreative-cashflow-theme/
-├── style.css              # Theme declaration + full CSS design system
-├── functions.php          # Theme setup, CPTs, taxonomies, customiser
-├── theme.json             # Block editor colour + typography tokens
-├── header.php             # Site header + navigation
-├── footer.php             # Site footer + widgets
-├── front-page.php         # Homepage (hero, services, about, process, properties, testimonials, blog)
-├── index.php              # Blog archive / fallback
-├── singular.php           # Single posts + static pages
-├── single.php             # Single post redirect
-├── page.php               # Page redirect
-├── archive.php            # Post + property archives
-├── sidebar.php            # Blog sidebar
-├── 404.php                # Error page
+├── style.css                    # Theme declaration + full CSS design system
+├── functions.php                # Theme setup, CPTs, taxonomies, EXPANDED customiser
+├── theme.json                   # Block editor colour + typography tokens
+├── header.php                   # Site header + navigation
+├── footer.php                   # Site footer + widgets
+├── front-page.php               # Homepage (100% customisable via Customiser)
+├── index.php                    # Blog archive / fallback
+├── singular.php                 # Single posts (blog) + pages (clean centered layout)
+├── single.php                   # Single post redirect
+├── page.php                     # Page redirect
+├── archive.php                  # Post + property archives
+├── sidebar.php                  # Blog sidebar
+├── 404.php                      # Error page
+├── template-full-width.php      # NEW: Full-width clean page template
+├── template-split.php           # NEW: Split layout (image left, content right)
 ├── assets/
-│   ├── css/               # (Optional: additional CSS partials)
+│   ├── css/                     # (Optional: additional CSS partials)
 │   └── js/
-│       └── main.js        # Navigation, scroll animations, counters, parallax
+│       └── main.js              # Navigation, scroll animations, counters, parallax
 └── README.md
 ```
+
+---
+
+## Page Templates
+
+WordPress pages can now use one of **three templates**:
+
+### 1. **Default** (singular.php)
+- Clean, centered content (max-width 900px)
+- No sidebar
+- Perfect for: About, Contact, general pages
+- Automatically removes blog styling (author box, post nav, etc.)
+
+### 2. **Full-Width Clean** (template-full-width.php)
+- Centered content with optional featured image (full-bleed)
+- CTA section at bottom (can be disabled with custom field: `kc_show_cta` = `no`)
+- Perfect for: Service pages, landing pages, content-heavy pages
+
+### 3. **Split Layout** (template-split.php)
+- Image on left (sticky), content on right
+- Optional stats below image (custom fields: `kc_stat_1_num`, `kc_stat_1_label`, etc.)
+- CTAs at bottom of content
+- Perfect for: Service detail pages, team member pages
+
+**To use:** Edit page → Page Attributes → Template → Select template
 
 ---
 
@@ -73,12 +100,43 @@ kreative-cashflow-theme/
 
 Under **Appearance → Customise → Kreative Cashflow**:
 
-| Section | Options |
-|---------|---------|
-| Hero Section | Tag line, headline (HTML), description, CTA buttons |
-| Hero Stats | 3 statistics (number + label) |
-| Contact Information | Phone, email, address, ABN |
-| Social Media | Facebook, Instagram, LinkedIn, YouTube |
+### Hero Section
+- Overline tag, headline (HTML), description
+- Primary CTA (label + URL)
+- Secondary CTA (label + URL)
+
+### Hero Stats (3 stats)
+- Number + Label for each
+
+### Services Section
+- **Enable/Disable** toggle
+- Overline tag, headline, description
+- **6 individual services** — title + description for each
+
+### About Section
+- **Enable/Disable** toggle
+- Overline tag, headline
+- 2 paragraphs of text
+- CTA button (label + URL)
+- **4 stats** — number + label for each
+
+### Process Section
+- **Enable/Disable** toggle
+- Overline tag, headline, description
+- **4 steps** — title + description for each
+
+### CTA Band
+- **Enable/Disable** toggle
+- Headline (HTML)
+- Primary button (label + URL)
+
+### Contact Information
+- Phone, email, address, ABN
+
+### Social Media
+- Facebook, Instagram, LinkedIn, YouTube URLs
+
+**All front-page sections are now fully customizable** without touching code. Sections can be toggled on/off individually.
 
 ---
 
