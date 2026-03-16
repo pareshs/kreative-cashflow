@@ -1,1 +1,3 @@
-<?php /* Single Post — singular.php will catch single posts */ ?>
+<?php
+// Redirect to singular.php
+get_template_part('singular');

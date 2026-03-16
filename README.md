@@ -1,154 +1,241 @@
-# Kreative Cashflow WordPress Theme
+# Kreative Cashflow (Elementor Edition)
 
-A premium WordPress theme for **Kreative Cashflow** — your complete property partner.
+**Build stunning property websites with Elementor + custom widgets**
 
-Built on the v1 brand identity: Cormorant Garamond + DM Sans + DM Mono typography, gold/slate/cream colour palette, and the editorial luxury aesthetic from the brand guidelines.
+## 🎉 What's Included
 
----
+This is a **complete WordPress theme built specifically for Elementor**, featuring:
 
-## Requirements
+### ✅ 6 Custom Elementor Widgets
+1. **Service Card** — Icon, title, description with hover effects
+2. **Property Card** — Image, price, specs (beds/baths/cars)
+3. **Testimonial** — Quote, author, rating stars
+4. **Team Member** — Photo, name, role, bio
+5. **Hero Section** — Tag, headline, description
+6. **Process Steps** — Numbered steps with repeater
 
-- WordPress 6.0+
-- PHP 8.0+
-- MySQL 5.7+ / MariaDB 10.3+
+All widgets in the **"Kreative Cashflow"** category in Elementor!
 
----
+### ✅ Brand Colors in Elementor
+- **Gold** (#C9A84C)
+- **Gold Light** (#E8D49A)
+- **Gold Dark** (#8B6914)
+- **Slate** (#2E3440)
+- **Cream** (#F7F4EE)
 
-## Installation
+Available in Elementor color picker!
 
-1. Download `kreative-cashflow-theme.zip`
-2. In WordPress admin go to **Appearance → Themes → Add New → Upload Theme**
-3. Upload the zip and click **Activate**
-4. Go to **Appearance → Menus** and assign your pages to the **Primary Navigation** menu
-5. Go to **Appearance → Customise → Kreative Cashflow** to set your contact info, hero content, and stats
-6. Set your **Reading Settings → Front page** to a static page (e.g. "Home") — the theme will use `front-page.php` automatically
+### ✅ Custom Post Types
+- **Properties** — Elementor-ready
+- **Team Members** — Elementor-ready
 
----
+### ✅ Templates
+- Canvas template (no header/footer)
+- Full-width support
+- Custom header/footer
 
-## File Structure
+## 📦 Installation
+
+### Step 1: Install Elementor
+1. Go to **Plugins → Add New**
+2. Search for "Elementor"
+3. Install and activate **Elementor Page Builder**
+
+### Step 2: Install Theme
+1. Go to **Appearance → Themes → Add New → Upload Theme**
+2. Upload `kreative-cashflow-elementor.zip`
+3. Click **Activate**
+
+### Step 3: Start Building!
+1. Create a new page
+2. Click "Edit with Elementor"
+3. Find **Kreative Cashflow** widgets in the left panel
+4. Drag and drop to build!
+
+## 🎨 Using Custom Widgets
+
+### Service Card Widget
+Perfect for services section:
+1. Drag **Service Card** widget
+2. Choose icon type (first-home, investment, mortgage, etc.)
+3. Edit title and description
+4. Customize colors in Style tab
+
+### Property Card Widget
+Perfect for property listings:
+1. Drag **Property Card** widget
+2. Upload property image
+3. Set price, title, location
+4. Set beds, baths, cars
+5. Done!
+
+### Testimonial Widget
+Perfect for client feedback:
+1. Drag **Testimonial** widget
+2. Enter testimonial text
+3. Set author name and role
+4. Choose star rating (0-5)
+
+### Team Member Widget
+Perfect for team pages:
+1. Drag **Team Member** widget
+2. Upload photo
+3. Enter name, role, bio
+4. Style as needed
+
+### Hero Section Widget
+Perfect for page headers:
+1. Drag **Hero** widget
+2. Set tag line, title, description
+3. Customize in Style tab
+
+### Process Steps Widget
+Perfect for "How It Works":
+1. Drag **Process Steps** widget
+2. Add/remove steps (repeater)
+3. Each step gets auto-numbered
+
+## 🏗️ Building a Homepage
+
+**Recommended structure:**
+
+1. **Hero Section** (full width, dark background)
+   - Use Hero widget
+   - Background color: Slate
+
+2. **Services Grid** (3-4 columns)
+   - Use Service Card widgets
+   - Background: White
+
+3. **About Section** (2 columns)
+   - Text column + Image
+   - Background: Cream
+
+4. **Process Steps** (4 columns)
+   - Use Process Steps widget
+   - Background: Slate
+
+5. **Properties** (3 columns)
+   - Use Property Card widgets
+   - Background: White
+
+6. **Testimonials** (3 columns)
+   - Use Testimonial widgets
+   - Background: Cream
+
+7. **CTA Section** (centered)
+   - Heading + Button
+   - Background: Slate
+
+## 🎨 Brand Guidelines
+
+### Colors
+- **Primary:** Gold (#C9A84C) — CTAs, accents
+- **Secondary:** Slate (#2E3440) — Backgrounds, text
+- **Background:** Cream (#F7F4EE) — Page background
+
+### Typography
+- **Headings:** Cormorant Garamond (loaded automatically)
+- **Body:** DM Sans (loaded automatically)
+- **Labels:** DM Mono
+
+### Spacing
+- Section padding: 80-100px
+- Element gap: 40px
+- Container: 1280px max-width
+
+## 📁 File Structure
 
 ```
-kreative-cashflow-theme/
-├── style.css              # Theme declaration + full CSS design system
-├── functions.php          # Theme setup, CPTs, taxonomies, customiser
-├── theme.json             # Block editor colour + typography tokens
-├── header.php             # Site header + navigation
-├── footer.php             # Site footer + widgets
-├── front-page.php         # Homepage (hero, services, about, process, properties, testimonials, blog)
-├── index.php              # Blog archive / fallback
-├── singular.php           # Single posts + static pages
-├── single.php             # Single post redirect
-├── page.php               # Page redirect
-├── archive.php            # Post + property archives
-├── sidebar.php            # Blog sidebar
-├── 404.php                # Error page
-├── assets/
-│   ├── css/               # (Optional: additional CSS partials)
-│   └── js/
-│       └── main.js        # Navigation, scroll animations, counters, parallax
-└── README.md
+kreative-cashflow-elementor/
+├── style.css ✅
+├── functions.php ✅
+├── header.php ✅
+├── footer.php ✅
+├── index.php ✅
+├── singular.php ✅
+├── page.php ✅
+├── single.php ✅
+├── 404.php ✅
+├── inc/
+│   ├── custom-post-types.php ✅
+│   └── elementor/
+│       └── widgets/
+│           ├── service-card.php ✅
+│           ├── property-card.php ✅
+│           ├── testimonial.php ✅
+│           ├── team-member.php ✅
+│           ├── hero-section.php ✅
+│           └── process-steps.php ✅
+├── templates/
+│   └── elementor-canvas.php ✅
+└── assets/
+    ├── css/
+    └── js/
+        └── main.js ✅
 ```
 
----
+## 💡 Tips
 
-## Custom Post Types
+**Best Practices:**
+- Use **Canvas template** for landing pages (no header/footer)
+- Use **sections** for better organization
+- Use **columns** within sections
+- Match brand colors from color picker
+- Keep sections full-width, containers boxed
 
-### Properties (`kc_property`)
-- **Public archive:** `/properties/`
-- **Meta fields:** Price, Bedrooms, Bathrooms, Garage, Land Size, House Size, Address, Rental Yield, Rent Per Week, Agent Name, Agent Phone
-- **Taxonomies:** Property Type, Property Status, Location
+**Performance:**
+- Optimize images before upload
+- Use lazy loading (Elementor setting)
+- Enable CSS/JS minification
 
-### Team Members (`kc_team`)
-- Admin-only, not publicly accessible
-- Used for team page templates
+**Workflow:**
+- Build homepage first as template
+- Save as Elementor template
+- Reuse sections across pages
 
-### Testimonials (`kc_testimonial`)
-- Admin-only post type
-- Displays on homepage and testimonials page
-- Meta: Rating (1–5), Client Type
+## 🆘 Troubleshooting
 
----
+**Widgets not showing?**
+- Make sure Elementor is installed and activated
+- Check **Appearance → Themes** shows this theme as active
+- Refresh Elementor editor (Ctrl+F5)
 
-## Customiser Options
+**Colors not in picker?**
+- Clear Elementor cache (**Elementor → Tools → Regenerate CSS**)
 
-Under **Appearance → Customise → Kreative Cashflow**:
+**Canvas template not working?**
+- Make sure template file exists: `templates/elementor-canvas.php`
 
-| Section | Options |
-|---------|---------|
-| Hero Section | Tag line, headline (HTML), description, CTA buttons |
-| Hero Stats | 3 statistics (number + label) |
-| Contact Information | Phone, email, address, ABN |
-| Social Media | Facebook, Instagram, LinkedIn, YouTube |
+## 🚀 Next Steps
 
----
+1. **Create Homepage**
+   - New Page → "Home"
+   - Edit with Elementor
+   - Build using widgets above
 
-## Recommended Plugins
+2. **Set as Front Page**
+   - Settings → Reading
+   - Select "Home" as front page
 
-| Plugin | Purpose |
-|--------|---------|
-| **Contact Form 7** or **WPForms** | Contact forms |
-| **Yoast SEO** | SEO meta, sitemaps |
-| **WP Rocket** or **Perfmatters** | Performance |
-| **Advanced Custom Fields (ACF)** | Extended property fields |
-| **Real Media Library** | Media organisation |
-| **Gravity Forms** | Advanced lead capture |
+3. **Create Services Page**
+   - Use Service Card widgets
 
----
+4. **Create Team Page**
+   - Use Team Member widgets
 
-## Widget Areas
+5. **Add Properties**
+   - Properties → Add New
+   - Build with Elementor
 
-- **Blog Sidebar** — shown on blog posts and archives
-- **Footer Column 1–3** — three widget columns in the footer (fallback menus shown if empty)
+## 📚 Resources
 
----
-
-## Navigation Menus
-
-| Location | Purpose |
-|----------|---------|
-| Primary Navigation | Main header menu (supports dropdowns) |
-| Footer — Services | Footer column: services links |
-| Footer — Company | Footer column: company links |
-| Footer — Legal | Footer column: legal/policy links |
+- **Elementor Docs:** https://elementor.com/help/
+- **Theme Support:** See inline code comments
+- **WordPress Help:** https://wordpress.org/support/
 
 ---
 
-## Colour Tokens
-
-```css
---ink:       #0F0E0A   /* Near black — headings, text */
---cream:     #F7F4EE   /* Warm off-white — page background */
---gold:      #C9A84C   /* Brand gold — accents, CTAs */
---gold-lt:   #E8D49A   /* Light gold — tints, fills */
---gold-dk:   #8B6914   /* Dark gold — links, hover */
---slate:     #2E3440   /* Deep slate — nav, hero, dark sections */
---slate-md:  #4C566A   /* Mid slate — body text */
---slate-lt:  #8C98A8   /* Light slate — captions, labels */
-```
-
----
-
-## Typography
-
-| Role | Font | Weight |
-|------|------|--------|
-| Display / Headlines | Cormorant Garamond | 300 / 600 |
-| Body Copy | DM Sans | 400 / 500 |
-| Labels / Captions | DM Mono | 400 / 500 |
-
-Loaded from Google Fonts — no self-hosting required.
-
----
-
-## Credits
-
-- Theme design based on Kreative Cashflow Brand Guidelines v1.0
-- Icons: custom SVG (no external icon library dependency)
-- Fonts: Google Fonts (Cormorant Garamond, DM Sans, DM Mono)
-
----
-
-## License
-
-GNU General Public License v2 or later  
-http://www.gnu.org/licenses/gpl-2.0.html
+**Version:** 3.0.0  
+**Requires:** Elementor (free version works!)  
+**Built for Australian property professionals** 🏠🇦🇺
