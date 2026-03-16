@@ -1,57 +1,137 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "$schema": "https://schemas.wp.org/wp/6.4/theme.json",
   "version": 2,
   "settings": {
     "color": {
+      "custom": true,
+      "customDuotone": true,
+      "customGradient": true,
+      "defaultGradients": false,
+      "defaultPalette": false,
       "palette": [
-        { "name": "Ink",        "slug": "ink",       "color": "#0F0E0A" },
-        { "name": "Slate",      "slug": "slate",     "color": "#2E3440" },
-        { "name": "Slate Mid",  "slug": "slate-mid", "color": "#4C566A" },
-        { "name": "Gold",       "slug": "gold",      "color": "#C9A84C" },
-        { "name": "Gold Dark",  "slug": "gold-dark", "color": "#8B6914" },
-        { "name": "Gold Light", "slug": "gold-light","color": "#E8D49A" },
-        { "name": "Cream",      "slug": "cream",     "color": "#F7F4EE" },
-        { "name": "White",      "slug": "white",     "color": "#FFFFFF" }
-      ],
-      "custom": false,
-      "customDuotone": false,
-      "customGradient": false,
-      "defaultPalette": false
+        {
+          "name": "Gold",
+          "slug": "gold",
+          "color": "#C9A84C"
+        },
+        {
+          "name": "Gold Light",
+          "slug": "gold-lt",
+          "color": "#E8D49A"
+        },
+        {
+          "name": "Gold Dark",
+          "slug": "gold-dk",
+          "color": "#8B6914"
+        },
+        {
+          "name": "Slate",
+          "slug": "slate",
+          "color": "#2E3440"
+        },
+        {
+          "name": "Slate Mid",
+          "slug": "slate-md",
+          "color": "#4C566A"
+        },
+        {
+          "name": "Slate Light",
+          "slug": "slate-lt",
+          "color": "#8C98A8"
+        },
+        {
+          "name": "Cream",
+          "slug": "cream",
+          "color": "#F7F4EE"
+        },
+        {
+          "name": "Ink",
+          "slug": "ink",
+          "color": "#0F0E0A"
+        },
+        {
+          "name": "White",
+          "slug": "white",
+          "color": "#FFFFFF"
+        }
+      ]
     },
     "typography": {
-      "fontFamilies": [
+      "customFontSize": true,
+      "fontSizes": [
         {
-          "fontFamily": "'Cormorant Garamond', Georgia, serif",
-          "slug": "serif",
-          "name": "Cormorant Garamond"
+          "name": "Small",
+          "slug": "small",
+          "size": "0.875rem"
         },
         {
-          "fontFamily": "'DM Sans', system-ui, sans-serif",
-          "slug": "sans",
-          "name": "DM Sans"
+          "name": "Medium",
+          "slug": "medium",
+          "size": "1rem"
         },
         {
-          "fontFamily": "'DM Mono', monospace",
-          "slug": "mono",
-          "name": "DM Mono"
+          "name": "Large",
+          "slug": "large",
+          "size": "1.5rem"
+        },
+        {
+          "name": "Extra Large",
+          "slug": "x-large",
+          "size": "2.5rem"
+        },
+        {
+          "name": "Huge",
+          "slug": "huge",
+          "size": "4rem"
         }
       ],
-      "fontSizes": [
-        { "name": "Small",       "slug": "small",       "size": "0.875rem" },
-        { "name": "Normal",      "slug": "normal",      "size": "1rem" },
-        { "name": "Medium",      "slug": "medium",      "size": "1.2rem" },
-        { "name": "Large",       "slug": "large",       "size": "1.6rem" },
-        { "name": "XL",          "slug": "xl",          "size": "2.4rem" },
-        { "name": "XXL",         "slug": "xxl",         "size": "3.5rem" }
-      ],
-      "customFontSize": true
+      "fontFamilies": [
+        {
+          "name": "Cormorant Garamond (Headings)",
+          "slug": "serif",
+          "fontFamily": "'Cormorant Garamond', Georgia, serif"
+        },
+        {
+          "name": "DM Sans (Body)",
+          "slug": "sans",
+          "fontFamily": "'DM Sans', system-ui, sans-serif"
+        },
+        {
+          "name": "DM Mono (Code)",
+          "slug": "mono",
+          "fontFamily": "'DM Mono', 'Courier New', monospace"
+        }
+      ]
     },
     "spacing": {
-      "units": ["px", "em", "rem", "%", "vw"]
+      "customSpacingSize": true,
+      "spacingSizes": [
+        {
+          "name": "Small",
+          "slug": "small",
+          "size": "1rem"
+        },
+        {
+          "name": "Medium",
+          "slug": "medium",
+          "size": "2rem"
+        },
+        {
+          "name": "Large",
+          "slug": "large",
+          "size": "4rem"
+        },
+        {
+          "name": "Extra Large",
+          "slug": "x-large",
+          "size": "6rem"
+        }
+      ],
+      "units": ["px", "em", "rem", "%", "vw", "vh"]
     },
     "layout": {
       "contentSize": "760px",
-      "wideSize": "1280px"
+      "wideSize": "1200px"
     }
   },
   "styles": {
@@ -65,34 +145,88 @@
       "lineHeight": "1.7"
     },
     "elements": {
+      "link": {
+        "color": {
+          "text": "#8B6914"
+        },
+        ":hover": {
+          "color": {
+            "text": "#C9A84C"
+          }
+        }
+      },
       "h1": {
         "typography": {
           "fontFamily": "'Cormorant Garamond', Georgia, serif",
           "fontWeight": "300",
+          "lineHeight": "1.2",
           "letterSpacing": "-0.02em"
+        },
+        "color": {
+          "text": "#2E3440"
         }
       },
       "h2": {
         "typography": {
           "fontFamily": "'Cormorant Garamond', Georgia, serif",
           "fontWeight": "300",
-          "letterSpacing": "-0.02em"
+          "lineHeight": "1.2"
+        },
+        "color": {
+          "text": "#2E3440"
         }
       },
       "h3": {
         "typography": {
           "fontFamily": "'Cormorant Garamond', Georgia, serif",
           "fontWeight": "600"
+        },
+        "color": {
+          "text": "#2E3440"
+        }
+      }
+    },
+    "blocks": {
+      "core/button": {
+        "border": {
+          "radius": "0"
+        },
+        "color": {
+          "background": "#2E3440",
+          "text": "#C9A84C"
+        },
+        "typography": {
+          "fontSize": "0.8rem",
+          "fontWeight": "500",
+          "letterSpacing": "0.12em",
+          "textTransform": "uppercase"
         }
       },
-      "link": {
-        "color": { "text": "#8B6914" },
-        ":hover": { "color": { "text": "#C9A84C" } }
+      "core/quote": {
+        "border": {
+          "color": "#C9A84C",
+          "style": "solid",
+          "width": "0 0 0 3px"
+        },
+        "spacing": {
+          "padding": {
+            "left": "32px"
+          }
+        },
+        "typography": {
+          "fontFamily": "'Cormorant Garamond', Georgia, serif",
+          "fontSize": "1.8rem",
+          "fontStyle": "italic"
+        },
+        "color": {
+          "text": "#2E3440"
+        }
+      },
+      "core/heading": {
+        "color": {
+          "text": "#2E3440"
+        }
       }
     }
-  },
-  "templateParts": [
-    { "name": "header", "title": "Header", "area": "header" },
-    { "name": "footer", "title": "Footer", "area": "footer" }
-  ]
+  }
 }

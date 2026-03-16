@@ -3,15 +3,15 @@ Theme Name:  Kreative Cashflow
 Theme URI:   https://kreativecashflow.com.au
 Author:      Kreative Cashflow
 Author URI:  https://kreativecashflow.com.au
-Description: A premium WordPress theme for Kreative Cashflow — your complete property partner. Built with Cormorant Garamond & DM Sans, gold/slate/cream palette.
-Version:     1.0.0
+Description: A premium WordPress theme for Kreative Cashflow — your complete property partner. Built with Cormorant Garamond & DM Sans, gold/slate/cream palette. NOW with full Gutenberg/Block Editor support, 80+ customizer options, and 6 page templates.
+Version:     2.5.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
 License:     GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kreative-cashflow
-Tags:        real-estate, property, business, one-column, two-columns, custom-menu, featured-images, footer-widgets, full-width-template, theme-options
+Tags:        real-estate, property, business, block-editor, block-patterns, custom-menu, featured-images, footer-widgets, full-width-template, theme-options, wide-blocks
 */
 
 /* ============================================================
@@ -636,7 +636,7 @@ blockquote cite {
 
 .about-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 80px;
   align-items: center;
 }
@@ -662,7 +662,7 @@ blockquote cite {
 
 .about-stat-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   margin-top: 40px;
 }
@@ -675,19 +675,15 @@ blockquote cite {
 
 .about-stat .stat-num {
   font-family: var(--font-serif);
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 300;
   color: var(--slate);
   line-height: 1;
-  letter-spacing: -0.02em;
 }
 
 .about-stat .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--slate);
   margin-top: 6px;
 }
 
@@ -1477,6 +1473,108 @@ blockquote cite {
 }
 
 /* ============================================================
+   PAGE TEMPLATES — ENHANCED STYLING
+   ============================================================ */
+
+/* Clean page wrapper — no blog styling */
+.page-template-default .entry-content,
+.page-template-template-full-width .entry-content,
+.page-template-template-split .entry-content {
+  max-width: none;
+}
+
+/* Remove post metadata on pages */
+.page .blog-meta,
+.page .author-box,
+.page .post-navigation {
+  display: none;
+}
+
+/* Full-width template specific */
+.page-template-template-full-width .entry-content h2 {
+  margin-top: 2em;
+  font-size: 2rem;
+}
+
+.page-template-template-full-width .entry-content h3 {
+  margin-top: 1.5em;
+  font-size: 1.4rem;
+}
+
+/* Split layout responsive improvements */
+.template-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.template-split-sticky {
+  position: sticky;
+  top: 120px;
+}
+
+@media (max-width: 960px) {
+  .template-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .template-split-sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Page content cards */
+.content-card {
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.content-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Page features grid */
+.page-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.page-feature {
+  padding: 32px;
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+}
+
+.page-feature h4 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.page-feature p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  max-width: none;
+}
+
+@media (max-width: 768px) {
+  .page-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
    FORMS (WP / WPForms / CF7 compatibility)
    ============================================================ */
 input[type="text"],
@@ -1755,4 +1853,109 @@ button[type="submit"] {
 @media print {
   #site-header, #site-footer, .hero-section { display: none; }
   body { background: #fff; color: #000; }
+}
+
+/* ============================================================
+   GUTENBERG/BLOCK EDITOR SUPPORT
+   ============================================================ */
+
+/* Block widths */
+.wp-block {
+  max-width: 760px;
+}
+
+.alignwide {
+  max-width: 1200px;
+}
+
+.alignfull {
+  max-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Gutenberg color palette classes */
+.has-gold-color { color: var(--kc-gold) !important; }
+.has-gold-background-color { background-color: var(--kc-gold) !important; }
+.has-gold-lt-color { color: var(--kc-gold-lt) !important; }
+.has-gold-lt-background-color { background-color: var(--kc-gold-lt) !important; }
+.has-gold-dk-color { color: var(--kc-gold-dk) !important; }
+.has-gold-dk-background-color { background-color: var(--kc-gold-dk) !important; }
+.has-slate-color { color: var(--kc-slate) !important; }
+.has-slate-background-color { background-color: var(--kc-slate) !important; }
+.has-slate-md-color { color: var(--kc-slate-md) !important; }
+.has-slate-md-background-color { background-color: var(--kc-slate-md) !important; }
+.has-slate-lt-color { color: var(--kc-slate-lt) !important; }
+.has-slate-lt-background-color { background-color: var(--kc-slate-lt) !important; }
+.has-cream-color { color: var(--kc-cream) !important; }
+.has-cream-background-color { background-color: var(--kc-cream) !important; }
+.has-ink-color { color: var(--kc-ink) !important; }
+.has-ink-background-color { background-color: var(--kc-ink) !important; }
+.has-white-color { color: var(--kc-white) !important; }
+.has-white-background-color { background-color: var(--kc-white) !important; }
+
+/* Block spacing */
+.wp-block-group,
+.wp-block-cover,
+.wp-block-columns {
+  margin-bottom: 2rem;
+}
+
+/* Block quote */
+.wp-block-quote {
+  font-family: var(--kc-font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--kc-slate);
+  border-left: 3px solid var(--kc-gold);
+  padding-left: 32px;
+  margin: 2em 0;
+}
+
+.wp-block-quote cite {
+  font-family: var(--kc-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kc-slate-lt);
+  font-style: normal;
+}
+
+/* Block buttons */
+.wp-block-button__link {
+  font-family: var(--kc-font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 0;
+  transition: all 0.25s ease;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+/* Block separator */
+.wp-block-separator {
+  border-color: var(--kc-rule);
+  margin: 3em auto;
+}
+
+/* Block columns */
+.wp-block-columns {
+  gap: 40px;
+}
+
+/* Block cover */
+.wp-block-cover {
+  min-height: 400px;
+}
+
+/* Block gallery */
+.wp-block-gallery {
+  margin-bottom: 2em;
 }

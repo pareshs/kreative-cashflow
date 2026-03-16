@@ -1,154 +1,214 @@
-# Kreative Cashflow WordPress Theme
+# Kreative Cashflow WordPress Theme v2.5
 
-A premium WordPress theme for **Kreative Cashflow** — your complete property partner.
+**The complete v2 design with enhanced Gutenberg/Block Editor support**
 
-Built on the v1 brand identity: Cormorant Garamond + DM Sans + DM Mono typography, gold/slate/cream colour palette, and the editorial luxury aesthetic from the brand guidelines.
+## 🎉 What's New in v2.5
 
----
+This is the **original Kreative Cashflow v2 theme** with the following enhancements:
 
-## Requirements
+### ✅ Full Gutenberg/Block Editor Support
+- **theme.json** — Complete block editor configuration
+- **9 brand colors** available in editor color picker
+- **3 font families** (Serif, Sans, Mono) in editor
+- **Wide & Full width** alignment support
+- **Custom spacing** units and scale
+- **Block patterns** ready
+- **Editor styles** match front-end exactly (WYSIWYG)
 
-- WordPress 6.0+
-- PHP 8.0+
-- MySQL 5.7+ / MariaDB 10.3+
+### ✅ All Original v2 Features Preserved
+- **80+ Customizer options** — Hero, Services, About, Process, CTA, Contact
+- **Complete homepage** — All sections with toggle on/off
+- **Gold/Slate/Cream palette** — Exactly as designed
+- **Cormorant Garamond + DM Sans** typography
+- **Noise texture overlay**
+- **Scroll animations**
+- **Custom post types** (Properties, Team, Testimonials)
 
----
+### ✅ Page Templates (Original v2)
+1. **Default** (singular.php) — Clean centered layout
+2. **Full-Width** (template-full-width.php) — No sidebars
+3. **Split Layout** (template-split.php) — Image + content
 
-## Installation
+## 📦 Installation
 
-1. Download `kreative-cashflow-theme.zip`
-2. In WordPress admin go to **Appearance → Themes → Add New → Upload Theme**
-3. Upload the zip and click **Activate**
-4. Go to **Appearance → Menus** and assign your pages to the **Primary Navigation** menu
-5. Go to **Appearance → Customise → Kreative Cashflow** to set your contact info, hero content, and stats
-6. Set your **Reading Settings → Front page** to a static page (e.g. "Home") — the theme will use `front-page.php` automatically
+1. Go to **Appearance → Themes → Add New → Upload Theme**
+2. Upload `kreative-cashflow-v2-complete.zip`
+3. Click **Activate**
+4. Done!
 
----
+## 🎨 Using the Block Editor
 
-## File Structure
+### Brand Colors Available
+All these colors are in the editor color picker:
+- **Gold** (#C9A84C) — Primary accent
+- **Gold Light** (#E8D49A)
+- **Gold Dark** (#8B6914)
+- **Slate** (#2E3440) — Dark backgrounds
+- **Slate Mid** (#4C566A)
+- **Slate Light** (#8C98A8)
+- **Cream** (#F7F4EE) — Page background
+- **Ink** (#0F0E0A) — Headings
+- **White** (#FFFFFF)
+
+### Font Families Available
+- **Cormorant Garamond** — For headings
+- **DM Sans** — For body text
+- **DM Mono** — For code/labels
+
+### Block Alignments
+- **Default** — 760px max width
+- **Wide** — 1200px max width
+- **Full Width** — Edge-to-edge (100vw)
+
+### How to Use
+
+**Adding a block:**
+1. Click the + button
+2. Choose any block (paragraph, heading, image, etc.)
+3. Use the color picker on the right to apply brand colors
+4. Use alignment toolbar for wide/full width
+
+**Example - Creating a hero section:**
+1. Add a **Cover block**
+2. Set background color to "Slate"
+3. Add **Heading block** inside
+4. Type your headline
+5. Use color picker → Select "Gold" for em tags
+6. Add **Buttons block**
+7. Style buttons with brand colors
+
+## 🎛️ Customizer Options
+
+Go to **Appearance → Customize → Kreative Cashflow**
+
+### Available Sections:
+- **Hero Section** — Tag, title, description, 2 CTAs, 3 stats
+- **Services** — Toggle + 6 service cards (title + description each)
+- **About** — Toggle + headline, 2 paragraphs, CTA, 4 stats
+- **Process** — Toggle + 4 steps (title + description each)
+- **CTA Band** — Toggle + headline + button
+- **Contact Info** — Phone, email, address, ABN
+- **Social Media** — Facebook, Instagram, LinkedIn, YouTube
+
+**Each section can be toggled on/off individually**
+
+## 📄 Page Templates
+
+### How to Use Templates
+1. Edit any page
+2. Page Attributes → Template
+3. Select template from dropdown
+4. Publish
+
+### Available Templates
+
+**Default (singular.php)**
+- Clean, centered content
+- Max-width 900px
+- No sidebar
+- Perfect for: About, Contact, standard pages
+
+**Full-Width (template-full-width.php)**
+- Edge-to-edge content
+- Max-width 1200px
+- Optional CTA at bottom
+- Perfect for: Service pages, landing pages
+
+**Split Layout (template-split.php)**
+- Image on left (sticky)
+- Content on right
+- Responsive (stacks on mobile)
+- Perfect for: Team pages, detailed services
+
+## 🧩 Custom Post Types
+
+### Properties
+- Location: **Properties** menu in admin
+- Public archive at `/properties/`
+- Taxonomies: Property Type, Status, Location
+- Meta fields: Price, beds, baths, land size, etc.
+
+### Team Members
+- Location: **Team Members** menu in admin
+- Admin-only (not public)
+- Use for staff profiles
+
+### Testimonials
+- Location: **Testimonials** menu in admin
+- Admin-only (not public)
+- Use for client feedback
+
+## 🎨 Design System
+
+### Colors
+- **Primary:** Gold #C9A84C
+- **Secondary:** Slate #2E3440
+- **Background:** Cream #F7F4EE
+- **Text:** Ink #0F0E0A
+
+### Typography
+- **Headings:** Cormorant Garamond (300/600 weight)
+- **Body:** DM Sans (400/500/600 weight)
+- **Labels:** DM Mono (400/500 weight)
+
+### Spacing
+- **Container:** 1280px max
+- **Section padding:** 100px vertical
+- **Gap:** 80px
+
+## 📁 File Structure
 
 ```
-kreative-cashflow-theme/
-├── style.css              # Theme declaration + full CSS design system
-├── functions.php          # Theme setup, CPTs, taxonomies, customiser
-├── theme.json             # Block editor colour + typography tokens
-├── header.php             # Site header + navigation
-├── footer.php             # Site footer + widgets
-├── front-page.php         # Homepage (hero, services, about, process, properties, testimonials, blog)
-├── index.php              # Blog archive / fallback
-├── singular.php           # Single posts + static pages
-├── single.php             # Single post redirect
-├── page.php               # Page redirect
-├── archive.php            # Post + property archives
-├── sidebar.php            # Blog sidebar
-├── 404.php                # Error page
-├── assets/
-│   ├── css/               # (Optional: additional CSS partials)
-│   └── js/
-│       └── main.js        # Navigation, scroll animations, counters, parallax
-└── README.md
+kreative-cashflow-v2-complete/
+├── style.css ✅                    Theme CSS + Gutenberg support
+├── theme.json ✅                   Block editor configuration
+├── functions.php ✅                Enhanced with Gutenberg support
+├── header.php ✅
+├── footer.php ✅
+├── index.php ✅
+├── front-page.php ✅               Complete homepage with all sections
+├── singular.php ✅                 Pages & posts template
+├── archive.php ✅
+├── sidebar.php ✅
+├── single.php ✅
+├── 404.php ✅
+├── template-full-width.php ✅
+├── template-split.php ✅
+├── inc/ (if exists)
+└── assets/
+    ├── css/
+    │   └── editor-styles.css ✅    Editor matches front-end
+    └── js/
+        └── main.js ✅              Animations & interactions
 ```
 
----
+## 🚀 Performance
 
-## Custom Post Types
+- Google Fonts loaded from CDN
+- Minimal JavaScript
+- CSS variables for theming
+- Optimized images with custom sizes
+- No jQuery dependency
 
-### Properties (`kc_property`)
-- **Public archive:** `/properties/`
-- **Meta fields:** Price, Bedrooms, Bathrooms, Garage, Land Size, House Size, Address, Rental Yield, Rent Per Week, Agent Name, Agent Phone
-- **Taxonomies:** Property Type, Property Status, Location
+## 🆘 Support
 
-### Team Members (`kc_team`)
-- Admin-only, not publicly accessible
-- Used for team page templates
+**Theme Documentation:** See README.md (this file)
 
-### Testimonials (`kc_testimonial`)
-- Admin-only post type
-- Displays on homepage and testimonials page
-- Meta: Rating (1–5), Client Type
+**WordPress Help:** https://wordpress.org/support/
 
----
+**Gutenberg Guide:** https://wordpress.org/gutenberg/
 
-## Customiser Options
+**Customizer:** Appearance → Customize → Kreative Cashflow
 
-Under **Appearance → Customise → Kreative Cashflow**:
+## ✨ Credits
 
-| Section | Options |
-|---------|---------|
-| Hero Section | Tag line, headline (HTML), description, CTA buttons |
-| Hero Stats | 3 statistics (number + label) |
-| Contact Information | Phone, email, address, ABN |
-| Social Media | Facebook, Instagram, LinkedIn, YouTube |
+- **Fonts:** Google Fonts (Cormorant Garamond, DM Sans, DM Mono)
+- **Built for:** Kreative Cashflow (Australian property services)
+- **License:** GPL v2 or later
 
 ---
 
-## Recommended Plugins
-
-| Plugin | Purpose |
-|--------|---------|
-| **Contact Form 7** or **WPForms** | Contact forms |
-| **Yoast SEO** | SEO meta, sitemaps |
-| **WP Rocket** or **Perfmatters** | Performance |
-| **Advanced Custom Fields (ACF)** | Extended property fields |
-| **Real Media Library** | Media organisation |
-| **Gravity Forms** | Advanced lead capture |
-
----
-
-## Widget Areas
-
-- **Blog Sidebar** — shown on blog posts and archives
-- **Footer Column 1–3** — three widget columns in the footer (fallback menus shown if empty)
-
----
-
-## Navigation Menus
-
-| Location | Purpose |
-|----------|---------|
-| Primary Navigation | Main header menu (supports dropdowns) |
-| Footer — Services | Footer column: services links |
-| Footer — Company | Footer column: company links |
-| Footer — Legal | Footer column: legal/policy links |
-
----
-
-## Colour Tokens
-
-```css
---ink:       #0F0E0A   /* Near black — headings, text */
---cream:     #F7F4EE   /* Warm off-white — page background */
---gold:      #C9A84C   /* Brand gold — accents, CTAs */
---gold-lt:   #E8D49A   /* Light gold — tints, fills */
---gold-dk:   #8B6914   /* Dark gold — links, hover */
---slate:     #2E3440   /* Deep slate — nav, hero, dark sections */
---slate-md:  #4C566A   /* Mid slate — body text */
---slate-lt:  #8C98A8   /* Light slate — captions, labels */
-```
-
----
-
-## Typography
-
-| Role | Font | Weight |
-|------|------|--------|
-| Display / Headlines | Cormorant Garamond | 300 / 600 |
-| Body Copy | DM Sans | 400 / 500 |
-| Labels / Captions | DM Mono | 400 / 500 |
-
-Loaded from Google Fonts — no self-hosting required.
-
----
-
-## Credits
-
-- Theme design based on Kreative Cashflow Brand Guidelines v1.0
-- Icons: custom SVG (no external icon library dependency)
-- Fonts: Google Fonts (Cormorant Garamond, DM Sans, DM Mono)
-
----
-
-## License
-
-GNU General Public License v2 or later  
-http://www.gnu.org/licenses/gpl-2.0.html
+**Version:** 2.5.0  
+**Tested up to:** WordPress 6.7  
+**Requires PHP:** 8.0+  
+**Built with ❤️ for Australian property professionals** 🏠🇦🇺

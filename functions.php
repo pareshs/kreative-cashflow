@@ -8,7 +8,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'KC_VERSION', '1.0.0' );
+define( 'KC_VERSION', '2.5.0' );
 define( 'KC_DIR', get_template_directory() );
 define( 'KC_URI', get_template_directory_uri() );
 
@@ -29,6 +29,13 @@ function kc_theme_setup() {
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'editor-styles' );
     add_theme_support( 'wp-block-styles' );
+    add_theme_support( 'align-wide' );
+    add_theme_support( 'custom-spacing' );
+    add_theme_support( 'custom-units', [ 'rem', 'em', 'px', '%', 'vw', 'vh' ] );
+    add_theme_support( 'custom-line-height' );
+    add_theme_support( 'appearance-tools' );
+    add_theme_support( 'core-block-patterns' );
+    add_editor_style( 'assets/css/editor-styles.css' );
 
     // Custom logo
     add_theme_support( 'custom-logo', [
@@ -323,21 +330,22 @@ function kc_customizer( WP_Customize_Manager $wp_customize ) {
         'priority' => 30,
     ]);
 
-    // Section: Hero
+    // ═══════════════════════════════════════════
+    // HERO SECTION
+    // ═══════════════════════════════════════════
     $wp_customize->add_section( 'kc_hero', [
         'title'  => __( 'Hero Section', 'kreative-cashflow' ),
         'panel'  => 'kc_panel',
     ]);
-
     kc_add_setting( $wp_customize, 'kc_hero_tag',    'Your Complete Property Partner',  'kc_hero', 'Hero Overline Tag' );
     kc_add_setting( $wp_customize, 'kc_hero_title',  'Find. Finance. <em>Own.</em>',   'kc_hero', 'Hero Headline (HTML allowed)' );
-    kc_add_setting( $wp_customize, 'kc_hero_desc',   'Expert guidance for every stage of your property journey — from first home to investment portfolio.',  'kc_hero', 'Hero Description' );
+    kc_add_setting( $wp_customize, 'kc_hero_desc',   'Expert guidance for every stage of your property journey — from first home to investment portfolio.',  'kc_hero', 'Hero Description', 'textarea' );
     kc_add_setting( $wp_customize, 'kc_hero_cta1',   'Book a Free Consultation',       'kc_hero', 'Primary CTA Label' );
     kc_add_setting( $wp_customize, 'kc_hero_cta1_url', '/contact',                     'kc_hero', 'Primary CTA URL' );
     kc_add_setting( $wp_customize, 'kc_hero_cta2',   'View Properties',                'kc_hero', 'Secondary CTA Label' );
     kc_add_setting( $wp_customize, 'kc_hero_cta2_url', '/properties',                  'kc_hero', 'Secondary CTA URL' );
 
-    // Section: Stats
+    // Stats
     $wp_customize->add_section( 'kc_stats', [
         'title' => __( 'Hero Stats', 'kreative-cashflow' ),
         'panel' => 'kc_panel',
@@ -347,7 +355,112 @@ function kc_customizer( WP_Customize_Manager $wp_customize ) {
         kc_add_setting( $wp_customize, "kc_stat_{$i}_label", [ 'Clients Helped', 'Satisfaction Rate', 'Properties Settled' ][ $i-1 ], 'kc_stats', "Stat $i — Label" );
     }
 
-    // Section: Contact / Footer
+    // ═══════════════════════════════════════════
+    // SERVICES SECTION
+    // ═══════════════════════════════════════════
+    $wp_customize->add_section( 'kc_services', [
+        'title' => __( 'Services Section', 'kreative-cashflow' ),
+        'panel' => 'kc_panel',
+    ]);
+    kc_add_setting( $wp_customize, 'kc_services_enable', '1', 'kc_services', 'Enable Services Section', 'checkbox' );
+    kc_add_setting( $wp_customize, 'kc_services_tag',    'What We Do', 'kc_services', 'Overline Tag' );
+    kc_add_setting( $wp_customize, 'kc_services_title',  'Every Step of <em>Your Journey</em>', 'kc_services', 'Section Headline (HTML)' );
+    kc_add_setting( $wp_customize, 'kc_services_desc',   'From finding your first property to building an investment portfolio — we cover every aspect of the property process so you never have to do it alone.', 'kc_services', 'Section Description', 'textarea' );
+
+    // Individual services (12 cards)
+    for ( $i = 1; $i <= 12; $i++ ) {
+        $defaults = [
+            1 => [ 'title' => 'First Home Buying',     'desc' => 'Hand-holding from the first open home to collecting the keys. We demystify grants, deposits, and the settlement process.' ],
+            2 => [ 'title' => 'Investment Property',   'desc' => 'Sourcing high-yield opportunities, analysing rental returns, and building portfolios that generate consistent cashflow.' ],
+            3 => [ 'title' => 'Mortgage Broking',      'desc' => 'Comparing hundreds of loan products across Australia\'s lenders to find the best rate, structure, and terms for you.' ],
+            4 => [ 'title' => 'Conveyancing & Legal',  'desc' => 'Connecting you with trusted solicitors and conveyancers who handle contracts, title searches, and every legal step.' ],
+            5 => [ 'title' => 'Property Inspection',   'desc' => 'Booking qualified building and pest inspectors so you know exactly what you\'re buying before you sign.' ],
+            6 => [ 'title' => 'Property Management',   'desc' => 'Managing tenancies, maintenance, and compliance — maximising returns while eliminating the day-to-day hassle.' ],
+            7 => [ 'title' => 'First Home Buying',     'desc' => 'Hand-holding from the first open home to collecting the keys. We demystify grants, deposits, and the settlement process.' ],
+            8 => [ 'title' => 'Investment Property',   'desc' => 'Sourcing high-yield opportunities, analysing rental returns, and building portfolios that generate consistent cashflow.' ],
+            9 => [ 'title' => 'Mortgage Broking',      'desc' => 'Comparing hundreds of loan products across Australia\'s lenders to find the best rate, structure, and terms for you.' ],
+            10 => [ 'title' => 'Conveyancing & Legal',  'desc' => 'Connecting you with trusted solicitors and conveyancers who handle contracts, title searches, and every legal step.' ],
+            11 => [ 'title' => 'Property Inspection',   'desc' => 'Booking qualified building and pest inspectors so you know exactly what you\'re buying before you sign.' ],
+            12 => [ 'title' => 'Property Management',   'desc' => 'Managing tenancies, maintenance, and compliance — maximising returns while eliminating the day-to-day hassle.' ],
+        ];
+        kc_add_setting( $wp_customize, "kc_service_{$i}_title", $defaults[$i]['title'], 'kc_services', "Service $i — Title" );
+        kc_add_setting( $wp_customize, "kc_service_{$i}_desc",  $defaults[$i]['desc'],  'kc_services', "Service $i — Description", 'textarea' );
+    }
+
+    // ═══════════════════════════════════════════
+    // ABOUT SECTION
+    // ═══════════════════════════════════════════
+    $wp_customize->add_section( 'kc_about', [
+        'title' => __( 'About Section', 'kreative-cashflow' ),
+        'panel' => 'kc_panel',
+    ]);
+    kc_add_setting( $wp_customize, 'kc_about_enable', '1', 'kc_about', 'Enable About Section', 'checkbox' );
+    kc_add_setting( $wp_customize, 'kc_about_tag',   'Who We Are', 'kc_about', 'Overline Tag' );
+    kc_add_setting( $wp_customize, 'kc_about_title', 'Property Made <em>Simple</em>', 'kc_about', 'Section Headline (HTML)' );
+    kc_add_setting( $wp_customize, 'kc_about_text',  'Kreative Cashflow was born out of a simple frustration: buying property in Australia is harder than it should be. Fragmented advice, disconnected professionals, and a maze of paperwork leaves most buyers overwhelmed.', 'kc_about', 'First Paragraph', 'textarea' );
+    kc_add_setting( $wp_customize, 'kc_about_text2', 'We built a better way. One team that connects you with every specialist you need — mortgage brokers, solicitors, inspectors, property managers — and guides you through every step with clarity and confidence.', 'kc_about', 'Second Paragraph', 'textarea' );
+    kc_add_setting( $wp_customize, 'kc_about_cta',   'Our Story', 'kc_about', 'CTA Button Label' );
+    kc_add_setting( $wp_customize, 'kc_about_url',   '/about', 'kc_about', 'CTA Button URL' );
+
+    // About stats
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $defaults = [ '10+' => 'Years Experience', '500+' => 'Clients Helped', '50+' => 'Trusted Partners', '$2.4B' => 'Properties Settled', '$2.4B' => 'Properties Settled' ];
+        $pairs = array_chunk( array_keys( $defaults ), 1, true );
+        $num   = array_keys( $defaults )[ $i - 1 ];
+        $label = $defaults[ $num ];
+        kc_add_setting( $wp_customize, "kc_about_stat_{$i}_num",   $num,   'kc_about', "Stat $i — Number" );
+        kc_add_setting( $wp_customize, "kc_about_stat_{$i}_label", $label, 'kc_about', "Stat $i — Label" );
+    }
+
+    // ═══════════════════════════════════════════
+    // PROCESS SECTION
+    // ═══════════════════════════════════════════
+    $wp_customize->add_section( 'kc_process', [
+        'title' => __( 'Process Section', 'kreative-cashflow' ),
+        'panel' => 'kc_panel',
+    ]);
+    kc_add_setting( $wp_customize, 'kc_process_enable', '1', 'kc_process', 'Enable Process Section', 'checkbox' );
+    kc_add_setting( $wp_customize, 'kc_process_tag',   'How It Works', 'kc_process', 'Overline Tag' );
+    kc_add_setting( $wp_customize, 'kc_process_title', 'Your Journey, <em>Simplified</em>', 'kc_process', 'Section Headline (HTML)' );
+    kc_add_setting( $wp_customize, 'kc_process_desc',  'From the first conversation to holding the keys — here is how we guide you through every step.', 'kc_process', 'Description', 'textarea' );
+
+    // Process steps (4)
+    for ( $i = 1; $i <= 4; $i++ ) {
+        $defaults = [
+            1 => [ 'title' => 'Discovery Call',      'desc' => 'Tell us your goals, budget, and timeline. We\'ll map out your ideal property journey and introduce you to the right specialists.' ],
+            2 => [ 'title' => 'Strategy & Finance',  'desc' => 'Our mortgage brokers get your pre-approval sorted so you can move fast when the right property comes along.' ],
+            3 => [ 'title' => 'Find & Secure',       'desc' => 'We help you identify properties, negotiate terms, book inspections, and review contracts before you commit.' ],
+            4 => [ 'title' => 'Settlement & Beyond', 'desc' => 'Our solicitors manage settlement and our property managers keep your investment performing for years to come.' ],
+        ];
+        kc_add_setting( $wp_customize, "kc_process_{$i}_title", $defaults[$i]['title'], 'kc_process', "Step $i — Title" );
+        kc_add_setting( $wp_customize, "kc_process_{$i}_desc",  $defaults[$i]['desc'],  'kc_process', "Step $i — Description", 'textarea' );
+    }
+
+    // ═══════════════════════════════════════════
+    // CTA BAND
+    // ═══════════════════════════════════════════
+    $wp_customize->add_section( 'kc_cta', [
+        'title' => __( 'CTA Band', 'kreative-cashflow' ),
+        'panel' => 'kc_panel',
+    ]);
+    kc_add_setting( $wp_customize, 'kc_cta_enable', '1', 'kc_cta', 'Enable CTA Band', 'checkbox' );
+    kc_add_setting( $wp_customize, 'kc_cta_title',  'Ready to Start Your Property <em>Journey?</em>', 'kc_cta', 'CTA Headline (HTML)' );
+    kc_add_setting( $wp_customize, 'kc_cta_btn1',   'Book a Free Consultation', 'kc_cta', 'Primary Button Label' );
+    kc_add_setting( $wp_customize, 'kc_cta_url1',   '/contact', 'kc_cta', 'Primary Button URL' );
+
+    // ═══════════════════════════════════════════
+    // Properties
+    // ═══════════════════════════════════════════
+    kc_add_setting( $wp_customize, 'kc_properties_enable', '1', 'kc_properties', 'Enable Properties Section', 'checkbox' );
+
+    // ═══════════════════════════════════════════
+    // Testimonials
+    // ═══════════════════════════════════════════
+    kc_add_setting( $wp_customize, 'kc_testimonials_enable', '1', 'kc_testimonials', 'Enable Testimonials Section', 'checkbox' );
+
+    // ═══════════════════════════════════════════
+    // CONTACT INFO
+    // ═══════════════════════════════════════════
     $wp_customize->add_section( 'kc_contact_info', [
         'title' => __( 'Contact Information', 'kreative-cashflow' ),
         'panel' => 'kc_panel',
@@ -357,7 +470,9 @@ function kc_customizer( WP_Customize_Manager $wp_customize ) {
     kc_add_setting( $wp_customize, 'kc_address', 'Gold Coast QLD 4217, Australia',   'kc_contact_info', 'Office Address' );
     kc_add_setting( $wp_customize, 'kc_abn',     'ABN 00 000 000 000',               'kc_contact_info', 'ABN' );
 
-    // Section: Social Links
+    // ═══════════════════════════════════════════
+    // SOCIAL LINKS
+    // ═══════════════════════════════════════════
     $wp_customize->add_section( 'kc_social', [
         'title' => __( 'Social Media Links', 'kreative-cashflow' ),
         'panel' => 'kc_panel',
@@ -368,9 +483,9 @@ function kc_customizer( WP_Customize_Manager $wp_customize ) {
     kc_add_setting( $wp_customize, 'kc_youtube',   '', 'kc_social', 'YouTube URL' );
 }
 
-function kc_add_setting( $wpc, $id, $default, $section, $label ) {
+function kc_add_setting( $wpc, $id, $default, $section, $label, $type = 'text' ) {
     $wpc->add_setting( $id, [ 'default' => $default, 'sanitize_callback' => 'wp_kses_post', 'transport' => 'refresh' ] );
-    $wpc->add_control( $id, [ 'label' => $label, 'section' => $section, 'type' => 'text' ] );
+    $wpc->add_control( $id, [ 'label' => $label, 'section' => $section, 'type' => $type ] );
 }
 add_action( 'customize_register', 'kc_customizer' );
 
