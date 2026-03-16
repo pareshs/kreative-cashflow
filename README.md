@@ -1,154 +1,93 @@
-# Kreative Cashflow WordPress Theme
+# Kreative Cashflow WordPress Theme v3.0 (Bootstrap 5.3)
 
-A premium WordPress theme for **Kreative Cashflow** — your complete property partner.
+A premium WordPress theme built on **Bootstrap 5.3** for Kreative Cashflow — your complete property partner.
 
-Built on the v1 brand identity: Cormorant Garamond + DM Sans + DM Mono typography, gold/slate/cream colour palette, and the editorial luxury aesthetic from the brand guidelines.
+## What's New in v3.0
 
----
+**Built on Bootstrap 5.3:**
+- Bootstrap 5.3.3 CSS & JS via CDN
+- Bootstrap Icons included
+- Responsive grid system
+- Bootstrap components (navbar, cards, buttons, forms, modals)
+- Mobile-first approach
+
+**Design:**
+- Cormorant Garamond + DM Sans + DM Mono typography
+- Gold/Slate/Cream brand palette
+- Noise texture overlay
+- Scroll animations
 
 ## Requirements
 
 - WordPress 6.0+
 - PHP 8.0+
-- MySQL 5.7+ / MariaDB 10.3+
-
----
+- Modern browser with JavaScript enabled
 
 ## Installation
 
-1. Download `kreative-cashflow-theme.zip`
-2. In WordPress admin go to **Appearance → Themes → Add New → Upload Theme**
-3. Upload the zip and click **Activate**
-4. Go to **Appearance → Menus** and assign your pages to the **Primary Navigation** menu
-5. Go to **Appearance → Customise → Kreative Cashflow** to set your contact info, hero content, and stats
-6. Set your **Reading Settings → Front page** to a static page (e.g. "Home") — the theme will use `front-page.php` automatically
-
----
+1. Download the theme ZIP
+2. Go to **Appearance → Themes → Add New → Upload Theme**
+3. Upload and activate
+4. Assign a menu to "Primary Navigation" in **Appearance → Menus**
+5. Customize settings in **Appearance → Customize → Kreative Cashflow**
 
 ## File Structure
 
 ```
 kreative-cashflow-theme/
-├── style.css              # Theme declaration + full CSS design system
-├── functions.php          # Theme setup, CPTs, taxonomies, customiser
-├── theme.json             # Block editor colour + typography tokens
-├── header.php             # Site header + navigation
-├── footer.php             # Site footer + widgets
-├── front-page.php         # Homepage (hero, services, about, process, properties, testimonials, blog)
-├── index.php              # Blog archive / fallback
-├── singular.php           # Single posts + static pages
-├── single.php             # Single post redirect
-├── page.php               # Page redirect
-├── archive.php            # Post + property archives
-├── sidebar.php            # Blog sidebar
-├── 404.php                # Error page
-├── assets/
-│   ├── css/               # (Optional: additional CSS partials)
-│   └── js/
-│       └── main.js        # Navigation, scroll animations, counters, parallax
-└── README.md
+├── style.css                    # Theme CSS (loads after Bootstrap)
+├── functions.php                # Theme setup + Bootstrap enqueue
+├── header.php                   # Bootstrap navbar
+├── footer.php                   # Bootstrap footer grid
+├── front-page.php               # Homepage with Bootstrap components
+├── index.php                    # Blog archive
+├── inc/
+│   ├── class-bootstrap-navwalker.php  # Bootstrap 5 menu walker
+│   ├── custom-post-types.php          # Properties, Team, Testimonials
+│   └── customizer.php                 # Theme options
+└── assets/
+    └── js/
+        └── main.js              # Scroll animations, counter, navbar
 ```
 
----
+## Bootstrap Components Used
+
+- **Navbar** — Fixed top navigation with dropdown support
+- **Grid System** — Responsive 12-column layout
+- **Cards** — Service cards, property cards, blog cards
+- **Buttons** — Primary, outline, gold variants
+- **Utilities** — Spacing, display, flex, text utilities
+- **Icons** — Bootstrap Icons via CDN
+
+## Customizer Options
+
+**Appearance → Customize → Kreative Cashflow:**
+
+- **Hero Section** — Tag, title, description, CTA buttons
+- **Contact Info** — Phone, email, address
 
 ## Custom Post Types
 
-### Properties (`kc_property`)
-- **Public archive:** `/properties/`
-- **Meta fields:** Price, Bedrooms, Bathrooms, Garage, Land Size, House Size, Address, Rental Yield, Rent Per Week, Agent Name, Agent Phone
-- **Taxonomies:** Property Type, Property Status, Location
+- **Properties** (`kc_property`) — Public archive at /properties/
+- **Team Members** (`kc_team`) — Admin only
+- **Testimonials** (`kc_testimonial`) — Admin only
 
-### Team Members (`kc_team`)
-- Admin-only, not publicly accessible
-- Used for team page templates
+## Key Features
 
-### Testimonials (`kc_testimonial`)
-- Admin-only post type
-- Displays on homepage and testimonials page
-- Meta: Rating (1–5), Client Type
-
----
-
-## Customiser Options
-
-Under **Appearance → Customise → Kreative Cashflow**:
-
-| Section | Options |
-|---------|---------|
-| Hero Section | Tag line, headline (HTML), description, CTA buttons |
-| Hero Stats | 3 statistics (number + label) |
-| Contact Information | Phone, email, address, ABN |
-| Social Media | Facebook, Instagram, LinkedIn, YouTube |
-
----
-
-## Recommended Plugins
-
-| Plugin | Purpose |
-|--------|---------|
-| **Contact Form 7** or **WPForms** | Contact forms |
-| **Yoast SEO** | SEO meta, sitemaps |
-| **WP Rocket** or **Perfmatters** | Performance |
-| **Advanced Custom Fields (ACF)** | Extended property fields |
-| **Real Media Library** | Media organisation |
-| **Gravity Forms** | Advanced lead capture |
-
----
-
-## Widget Areas
-
-- **Blog Sidebar** — shown on blog posts and archives
-- **Footer Column 1–3** — three widget columns in the footer (fallback menus shown if empty)
-
----
-
-## Navigation Menus
-
-| Location | Purpose |
-|----------|---------|
-| Primary Navigation | Main header menu (supports dropdowns) |
-| Footer — Services | Footer column: services links |
-| Footer — Company | Footer column: company links |
-| Footer — Legal | Footer column: legal/policy links |
-
----
-
-## Colour Tokens
-
-```css
---ink:       #0F0E0A   /* Near black — headings, text */
---cream:     #F7F4EE   /* Warm off-white — page background */
---gold:      #C9A84C   /* Brand gold — accents, CTAs */
---gold-lt:   #E8D49A   /* Light gold — tints, fills */
---gold-dk:   #8B6914   /* Dark gold — links, hover */
---slate:     #2E3440   /* Deep slate — nav, hero, dark sections */
---slate-md:  #4C566A   /* Mid slate — body text */
---slate-lt:  #8C98A8   /* Light slate — captions, labels */
-```
-
----
-
-## Typography
-
-| Role | Font | Weight |
-|------|------|--------|
-| Display / Headlines | Cormorant Garamond | 300 / 600 |
-| Body Copy | DM Sans | 400 / 500 |
-| Labels / Captions | DM Mono | 400 / 500 |
-
-Loaded from Google Fonts — no self-hosting required.
-
----
+✅ **Bootstrap 5.3** foundation  
+✅ **CDN-hosted** — no local Bootstrap files  
+✅ **Responsive** — mobile-first design  
+✅ **Bootstrap NavWalker** — dropdown menu support  
+✅ **Bootstrap Icons** — 1,800+ icons available  
+✅ **Scroll animations**  
+✅ **Custom post types**  
 
 ## Credits
 
-- Theme design based on Kreative Cashflow Brand Guidelines v1.0
-- Icons: custom SVG (no external icon library dependency)
-- Fonts: Google Fonts (Cormorant Garamond, DM Sans, DM Mono)
-
----
+- Bootstrap 5.3.3 — https://getbootstrap.com
+- Bootstrap Icons — https://icons.getbootstrap.com
+- Google Fonts (Cormorant Garamond, DM Sans, DM Mono)
 
 ## License
 
-GNU General Public License v2 or later  
-http://www.gnu.org/licenses/gpl-2.0.html
+GNU General Public License v2 or later
