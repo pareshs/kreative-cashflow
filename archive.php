@@ -29,7 +29,7 @@ get_header(); ?>
     <?php if ( is_post_type_archive( 'kc_property' ) ) : ?>
       <!-- Property Filter Bar -->
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);">
-        <span style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate-lt);padding:10px 0;margin-right:8px;"><?php esc_html_e( 'Filter by:', 'kreative-cashflow' ); ?></span>
+        <span style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--secondary-lt);padding:10px 0;margin-right:8px;"><?php esc_html_e( 'Filter by:', 'kreative-cashflow' ); ?></span>
         <?php
         $terms = get_terms([ 'taxonomy' => 'property_type', 'hide_empty' => true ]);
         echo '<a href="' . esc_url( get_post_type_archive_link( 'kc_property' ) ) . '" class="btn btn-primary" style="padding:10px 20px;">' . esc_html__( 'All', 'kreative-cashflow' ) . '</a>';

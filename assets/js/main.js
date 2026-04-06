@@ -60,7 +60,7 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.25, rootMargin: '0px 0px -40px 0px' }
     );
     animateEls.forEach((el) => observer.observe(el));
   } else {
@@ -169,7 +169,7 @@
         const data = await res.json();
 
         if (data.success) {
-          contactForm.innerHTML = '<div style="padding:32px;text-align:center;"><div style="font-family:var(--font-serif);font-size:1.8rem;font-style:italic;color:var(--slate);margin-bottom:12px;">Thank you!</div><p>We\'ll be in touch within 1 business day.</p></div>';
+          contactForm.innerHTML = '<div style="padding:32px;text-align:center;"><div style="font-family:var(--font-header);font-size:1.8rem;font-style:italic;color:var(--secondary);margin-bottom:12px;">Thank you!</div><p>We\'ll be in touch within 1 business day.</p></div>';
         } else {
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;

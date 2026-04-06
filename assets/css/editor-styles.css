@@ -1,0 +1,25 @@
+/* Block Editor Styles - matches front-end exactly */
+.editor-styles-wrapper {
+  background: #F7F4EE;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  color: #2E3440;
+}
+
+.editor-styles-wrapper .wp-block {
+  max-width: 760px;
+}
+
+.editor-styles-wrapper .alignwide {
+  max-width: 1200px;
+}
+
+.editor-styles-wrapper .alignfull {
+  max-width: none;
+}

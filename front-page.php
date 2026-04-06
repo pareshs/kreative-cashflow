@@ -1,365 +1,428 @@
 <?php
 /**
- * Front Page Template — Kreative Cashflow Homepage
+ * Front Page Template - Homepage
  *
  * @package KreativeCashflow
  */
-get_header(); ?>
+get_header(); 
+$sections = [
+	'hero' => true,
+	'service' => true,
+	'about' => true,
+	'clients' => true,
+	'process' => true,
+	'properties' => false,
+	'testimonials' => false,
+	'ctaband' => true,
+	'form' => true,
+];
+?>
 
 <!-- ═══════════════════════════════════════════════
-     HERO SECTION
+		 HERO SECTION
 ═══════════════════════════════════════════════ -->
-<section class="hero-section" aria-label="<?php esc_attr_e( 'Hero', 'kreative-cashflow' ); ?>">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="hero-orb" aria-hidden="true"></div>
-
-  <div class="hero-content">
-    <div class="hero-tag"><?php echo esc_html( kc_option( 'kc_hero_tag', 'Your Complete Property Partner' ) ); ?></div>
-
-    <h1><?php echo wp_kses_post( kc_option( 'kc_hero_title', 'Find. Finance. <em>Own.</em>' ) ); ?></h1>
-
-    <p class="hero-desc"><?php echo wp_kses_post( kc_option( 'kc_hero_desc', 'Expert guidance for every stage of your property journey — from first home to investment portfolio, mortgage to settlement.' ) ); ?></p>
-
-    <div class="hero-cta-group">
-      <a href="<?php echo esc_url( kc_option( 'kc_hero_cta1_url', '/contact' ) ); ?>" class="btn btn-gold">
-        <?php echo esc_html( kc_option( 'kc_hero_cta1', 'Book a Free Consultation' ) ); ?> &rarr;
-      </a>
-      <a href="<?php echo esc_url( kc_option( 'kc_hero_cta2_url', '/properties' ) ); ?>" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3);">
-        <?php echo esc_html( kc_option( 'kc_hero_cta2', 'View Properties' ) ); ?>
-      </a>
-    </div>
-
-    <div class="hero-stats" role="list" aria-label="Key statistics">
-      <?php for ( $i = 1; $i <= 3; $i++ ) :
-        $num   = kc_option( "kc_stat_{$i}_num",   [ '500+', '98%', '$2.4B' ][ $i - 1 ] );
-        $label = kc_option( "kc_stat_{$i}_label", [ 'Clients Helped', 'Satisfaction Rate', 'Properties Settled' ][ $i - 1 ] );
-      ?>
-      <div class="hero-stat" role="listitem" data-animate data-animate-delay="<?php echo $i; ?>">
-        <div class="hero-stat-num"><?php echo esc_html( $num ); ?></div>
-        <div class="hero-stat-label"><?php echo esc_html( $label ); ?></div>
-      </div>
-      <?php endfor; ?>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     SERVICES SECTION
-═══════════════════════════════════════════════ -->
-<section class="services-section section-pad" id="services">
-  <div class="container">
-    <div class="overline" data-animate><?php esc_html_e( 'What We Do', 'kreative-cashflow' ); ?></div>
-    <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Every Step of ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Your Journey', 'kreative-cashflow' ); ?></em></h2>
-    <p class="intro-p" data-animate data-animate-delay="2"><?php esc_html_e( 'From finding your first property to building an investment portfolio — we cover every aspect of the property process so you never have to do it alone.', 'kreative-cashflow' ); ?></p>
-
-    <div class="services-grid" data-animate>
-      <?php
-      $services = [
-        [ 'icon' => 'first-home', 'title' => 'First Home Buying',     'desc' => 'Hand-holding from the first open home to collecting the keys. We demystify grants, deposits, and the settlement process.' ],
-        [ 'icon' => 'investment', 'title' => 'Investment Property',    'desc' => 'Sourcing high-yield opportunities, analysing rental returns, and building portfolios that generate consistent cashflow.' ],
-        [ 'icon' => 'mortgage',   'title' => 'Mortgage Broking',       'desc' => 'Comparing hundreds of loan products across Australia\'s lenders to find the best rate, structure, and terms for you.' ],
-        [ 'icon' => 'legal',      'title' => 'Conveyancing & Legal',   'desc' => 'Connecting you with trusted solicitors and conveyancers who handle contracts, title searches, and every legal step.' ],
-        [ 'icon' => 'inspection', 'title' => 'Property Inspection',    'desc' => 'Booking qualified building and pest inspectors so you know exactly what you\'re buying before you sign.' ],
-        [ 'icon' => 'management', 'title' => 'Property Management',    'desc' => 'Managing tenancies, maintenance, and compliance — maximising returns while eliminating the day-to-day hassle.' ],
-      ];
-      foreach ( $services as $svc ) : ?>
-        <article class="service-card">
-          <div class="service-card-icon" aria-hidden="true"><?php echo kc_service_icon( $svc['icon'] ); ?></div>
-          <h3><?php echo esc_html( $svc['title'] ); ?></h3>
-          <p><?php echo esc_html( $svc['desc'] ); ?></p>
-        </article>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     ABOUT / WHY US SECTION
-═══════════════════════════════════════════════ -->
-<section class="about-section section-pad" id="about">
-  <div class="container">
-    <div class="about-inner">
-      <div class="about-image-wrap" data-animate>
-        <?php
-        $about_img_id = get_theme_mod( 'kc_about_image' );
-        if ( $about_img_id ) {
-          echo wp_get_attachment_image( $about_img_id, 'kc-portrait', false, [ 'alt' => 'Kreative Cashflow team' ] );
-        } else { ?>
-          <div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#2E3440,#4C566A);display:flex;align-items:center;justify-content:center;">
-            <svg width="80" height="80" viewBox="0 0 52 52" fill="none"><path d="M26 4L6 20V48H20V32H32V48H46V20L26 4Z" stroke="rgba(201,168,76,0.4)" stroke-width="1" fill="rgba(201,168,76,0.06)"/><circle cx="32" cy="20" r="8" fill="none" stroke="#C9A84C" stroke-width="1"/></svg>
-          </div>
-        <?php } ?>
-      </div>
-
-      <div class="about-content">
-        <div class="overline" data-animate><?php esc_html_e( 'Who We Are', 'kreative-cashflow' ); ?></div>
-        <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Property Made ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Simple', 'kreative-cashflow' ); ?></em></h2>
-        <p data-animate data-animate-delay="2"><?php echo wp_kses_post( kc_option( 'kc_about_text', 'Kreative Cashflow was born out of a simple frustration: buying property in Australia is harder than it should be. Fragmented advice, disconnected professionals, and a maze of paperwork leaves most buyers overwhelmed.' ) ); ?></p>
-        <p data-animate data-animate-delay="2"><?php echo wp_kses_post( kc_option( 'kc_about_text2', 'We built a better way. One team that connects you with every specialist you need — mortgage brokers, solicitors, inspectors, property managers — and guides you through every step with clarity and confidence.' ) ); ?></p>
-        <div class="gold-rule" data-animate></div>
-        <a href="<?php echo esc_url( kc_option( 'kc_about_url', '/about' ) ); ?>" class="btn btn-primary" data-animate data-animate-delay="3">
-          <?php esc_html_e( 'Our Story', 'kreative-cashflow' ); ?> &rarr;
-        </a>
-
-        <div class="about-stat-row" data-animate>
-          <?php
-          $stats = [
-            [ 'num' => '10+', 'label' => 'Years Experience' ],
-            [ 'num' => '500+', 'label' => 'Clients Helped' ],
-            [ 'num' => '50+', 'label' => 'Trusted Partners' ],
-            [ 'num' => '$2.4B', 'label' => 'Properties Settled' ],
-          ];
-          foreach ( $stats as $stat ) : ?>
-            <div class="about-stat">
-              <div class="stat-num"><?php echo esc_html( $stat['num'] ); ?></div>
-              <div class="stat-label"><?php echo esc_html( $stat['label'] ); ?></div>
-            </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     PROCESS STEPS
-═══════════════════════════════════════════════ -->
-<section class="process-section section-pad" id="how-it-works">
-  <div class="container">
-    <div class="overline" data-animate><?php esc_html_e( 'How It Works', 'kreative-cashflow' ); ?></div>
-    <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Your Journey, ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Simplified', 'kreative-cashflow' ); ?></em></h2>
-    <p style="color:rgba(255,255,255,0.5);" data-animate data-animate-delay="2"><?php esc_html_e( 'From the first conversation to holding the keys — here is how we guide you through every step.', 'kreative-cashflow' ); ?></p>
-
-    <div class="steps-grid" data-animate>
-      <?php
-      $steps = [
-        [ 'title' => 'Discovery Call',        'desc' => 'Tell us your goals, budget, and timeline. We\'ll map out your ideal property journey and introduce you to the right specialists.' ],
-        [ 'title' => 'Strategy & Finance',    'desc' => 'Our mortgage brokers get your pre-approval sorted so you can move fast when the right property comes along.' ],
-        [ 'title' => 'Find & Secure',         'desc' => 'We help you identify properties, negotiate terms, book inspections, and review contracts before you commit.' ],
-        [ 'title' => 'Settlement & Beyond',   'desc' => 'Our solicitors manage settlement and our property managers keep your investment performing for years to come.' ],
-      ];
-      foreach ( $steps as $i => $step ) : ?>
-        <div class="step-card" data-animate data-animate-delay="<?php echo $i + 1; ?>">
-          <div class="step-num"><?php echo str_pad( $i + 1, 2, '0', STR_PAD_LEFT ); ?></div>
-          <h4><?php echo esc_html( $step['title'] ); ?></h4>
-          <p><?php echo esc_html( $step['desc'] ); ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     FEATURED PROPERTIES
-═══════════════════════════════════════════════ -->
-<?php
-$properties = new WP_Query([
-  'post_type'      => 'kc_property',
-  'posts_per_page' => 3,
-  'meta_key'       => 'kc_featured',
-  'meta_value'     => '1',
-]);
-if ( ! $properties->have_posts() ) {
-  $properties = new WP_Query([
-    'post_type'      => 'kc_property',
-    'posts_per_page' => 3,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-  ]);
-}
-if ( $properties->have_posts() ) : ?>
-<section class="properties-section section-pad" id="properties">
-  <div class="container">
-    <div class="overline" data-animate><?php esc_html_e( 'Featured Properties', 'kreative-cashflow' ); ?></div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
-      <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Current ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Listings', 'kreative-cashflow' ); ?></em></h2>
-      <a href="<?php echo esc_url( get_post_type_archive_link( 'kc_property' ) ); ?>" class="btn btn-outline" data-animate><?php esc_html_e( 'View All Properties', 'kreative-cashflow' ); ?></a>
-    </div>
-
-    <div class="properties-grid" data-animate>
-      <?php while ( $properties->have_posts() ) : $properties->the_post();
-        $price   = get_post_meta( get_the_ID(), 'kc_price',     true );
-        $beds    = get_post_meta( get_the_ID(), 'kc_bedrooms',  true );
-        $baths   = get_post_meta( get_the_ID(), 'kc_bathrooms', true );
-        $garage  = get_post_meta( get_the_ID(), 'kc_garage',    true );
-        $address = get_post_meta( get_the_ID(), 'kc_address',   true );
-        $types   = get_the_terms( get_the_ID(), 'property_type' );
-        $badge   = $types ? $types[0]->name : 'Property';
-        $badge_class = ( stripos( $badge, 'invest' ) !== false ) ? 'investment' : '';
-      ?>
-        <article class="property-card">
-          <div class="property-card-img">
-            <?php if ( has_post_thumbnail() ) : ?>
-              <?php the_post_thumbnail( 'kc-property', [ 'alt' => get_the_title() ] ); ?>
-            <?php else : ?>
-              <div style="width:100%;height:100%;background:linear-gradient(135deg,#2E3440,#4C566A);display:flex;align-items:center;justify-content:center;">
-                <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M4 20L24 4L44 20V44H30V30H18V44H4V20Z" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/></svg>
-              </div>
-            <?php endif; ?>
-            <div class="property-badge <?php echo esc_attr( $badge_class ); ?>"><?php echo esc_html( $badge ); ?></div>
-          </div>
-          <div class="property-card-body">
-            <?php if ( $price ) : ?>
-              <div class="property-price"><?php echo esc_html( $price ); ?></div>
-            <?php endif; ?>
-            <div class="property-address"><?php echo $address ? esc_html( $address ) : esc_html( get_the_title() ); ?></div>
-            <?php if ( $beds || $baths || $garage ) : ?>
-              <div class="property-specs">
-                <?php if ( $beds ) : ?>
-                  <div class="property-spec">
-                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9V5a2 2 0 012-2h8a2 2 0 012 2v4M1 9v3M13 9v3M1 7h12"/></svg>
-                    <?php echo esc_html( $beds ); ?> bed
-                  </div>
-                <?php endif; ?>
-                <?php if ( $baths ) : ?>
-                  <div class="property-spec">
-                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h10v2a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM5 8V4a2 2 0 012-2v0"/></svg>
-                    <?php echo esc_html( $baths ); ?> bath
-                  </div>
-                <?php endif; ?>
-                <?php if ( $garage ) : ?>
-                  <div class="property-spec">
-                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10V5l5-4 5 4v5M5 10V7h4v3"/></svg>
-                    <?php echo esc_html( $garage ); ?> car
-                  </div>
-                <?php endif; ?>
-              </div>
-            <?php endif; ?>
-          </div>
-        </article>
-      <?php endwhile; wp_reset_postdata(); ?>
-    </div>
-  </div>
+<?php if ( $sections['hero'] ) : ?>
+<section class="hero-section" id="hero">
+	<video class="hero-vdo" role="presentation" autoplay="" muted="" playsinline="" loop="" src="/wp-content/uploads/2026/03/hp-hero-vdo.mp4"></video>
+	<div class="hero-vdo-overlay" aria-hidden="true"></div>
+	<div class="hero-orb" aria-hidden="true"></div>
+	<div class="container" style="position:relative;z-index:2;">
+		<div class="hero-tag"><?php echo wp_kses_post( kc_option( 'kc_hero_tag', 'Your Complete Property Partner' ) ); ?></div>
+		<h1 class="hero-title"><?php echo wp_kses_post( kc_option( 'kc_hero_title', 'Prosperity Through Property' ) ); ?></h1>
+		<p class="hero-desc"><?php echo wp_kses_post( kc_option( 'kc_hero_desc', 'Kreative Cashflow is your <strong>boutique, one-stop solution for property investment</strong>. From your first home to your next investment, we create strategies that grow your wealth, manage your assets, and secure your financial future.' ) ); ?></p>
+		
+		<div class="hero-ctas">
+			<a href="<?php echo esc_url( kc_option( 'kc_hero_cta1_url', '#form' ) ); ?>" class="btn btn-primary">
+				<?php echo esc_html( kc_option( 'kc_hero_cta1', 'Book Your Strategy Session Today' ) ); ?> &rarr;
+			</a>
+			<?php if(!empty(kc_option('kc_hero_cta2_url'))): ?>
+			<a href="<?php echo esc_url( kc_option( 'kc_hero_cta2_url', '/properties' ) ); ?>" class="btn btn-outline">
+				<?php echo esc_html( kc_option( 'kc_hero_cta2', 'View Properties' ) ); ?>
+			</a>
+			<?php endif; ?>
+		</div>
+		<?php if ( kc_option( 'kc_herostats_enable', '1' ) ) : ?>
+		<div class="hero-stats">
+			<?php for ( $i = 1; $i <= 3; $i++ ) :
+				$num = kc_option( "kc_stat_{$i}_num", [ 'End-to-End', 'Stress-Free', 'High-Quality' ][ $i - 1 ] );
+				$label = kc_option( "kc_stat_{$i}_label", [ 'Property Support', 'Buying Experience', 'Property Strategies' ][ $i - 1 ] );
+			?>
+				<div class="hero-stat" role="listitem" data-animate data-animate-delay="<?php echo $i; ?>">
+					<div class="hero-stat-num"><?php echo esc_html( $num ); ?></div>
+					<div class="hero-stat-label"><?php echo esc_html( $label ); ?></div>
+				</div>
+			<?php endfor; ?>
+		</div>
+		<?php endif; ?>
+	</div>
 </section>
 <?php endif; ?>
 
 <!-- ═══════════════════════════════════════════════
-     TESTIMONIALS
+		 SERVICES SECTION
 ═══════════════════════════════════════════════ -->
+<?php if ( $sections['service'] ) : ?>
+<section class="services-section section-pad" id="service">
+	<div class="container">
+		<div class="overline">What We Do</div>
+		<h2 data-animate data-animate-delay="1">Full Acquisition Concierge</h2>
+		<p class="intro-p" data-animate data-animate-delay="2">Our flagship service provides a <strong>complete, end-to-end property investment solution</strong>. Designed for investors or first-time buyers seeking a hands-off, strategic approach, this package ensures every property acquisition contributes to your long-term wealth goals.</p>
+		<a href="#form" class="btn btn-primary" data-animate data-animate-delay="3">
+			Book Your Full Acquisition Concierge Session  &rarr;
+		</a>
+
+		<div class="services-grid" data-animate>
+			<?php
+			$counter = 0;
+			$services = [
+				[ 'icon' => 'strategy',		'title' => 'Strategy Session (30-60 min)',		'desc' => 'Align acquisitions with your financial goals.'],
+				[ 'icon' => 'analytics',	'title' => 'Suburb Selection Analysis',		 	'desc' => 'Identify high-potential areas for growth and rental yield.'],
+				[ 'icon' => 'checklist',	'title' => 'Property Shortlist',		  		'desc' => 'Curated properties based on your financial blueprint.'],
+				[ 'icon' => 'management',	'title' => 'Comparable Sales Analysis',		 	'desc' => 'Data-driven insights to secure fair market value.'],
+				[ 'icon' => 'auction',		'title' => 'Negotiation & Auction Bidding',		'desc' => 'Expert guidance to get the best price.'],
+				[ 'icon' => 'inspection',	'title' => 'Building & Pest Coordination',		'desc' => 'Organize inspections with trusted professionals.'],
+				[ 'icon' => 'conveyancing',	'title' => 'Conveyancing Coordination',			'desc' => 'Full support through legal processes.'],
+				[ 'icon' => 'management',	'title' => 'Rental Manager Placement',		  	'desc' => 'Ensure your investment is managed efficiently.'],
+				[ 'icon' => 'management',	'title' => 'Depreciation Advice',		 		'desc' => 'Optimize tax benefits and returns.'],
+				[ 'icon' => 'management',	'title' => '3-Month Post-Settlement Review',  	'desc' => 'Monitor your property and ensure your strategy is on track.'],
+				[ 'icon' => 'first-home',	'title' => 'First Home Buyer Guidance',		 	'desc' => 'Step-by-step education, suburb analysis, and auction support.'],
+				[ 'icon' => 'support',		'title' => 'Due Diligence Support',		  		'desc' => 'For properties you\'ve found'],
+			];
+			
+			foreach ( $services as $svc ) : 
+			$counter++;
+			?>
+				<article class="service-card" data-animate data-animate-delay="<?php echo $counter + 1 ?>">
+					<div class="service-card-icon" aria-hidden="true"><?php echo kc_icon( $svc['icon'] ); ?></div>
+					<h3><?php echo esc_html( $svc['title'] ); ?></h3>
+					<p><?php echo esc_html( $svc['desc'] ); ?></p>
+				</article>
+			<?php endforeach; ?>
+		</div>
+		
+	</div>
+</section>
+<?php endif; ?>
+
+<!-- ═══════════════════════════════════════════════
+		 ABOUT SECTION
+═══════════════════════════════════════════════ -->
+<?php if ( $sections['about'] ) : ?>
+<section class="about-section section-pad" id="about">
+	<div class="container">
+		<div class="about-inner">
+			<div class="about-image-wrap" data-animate>
+				<img src="/wp-content/uploads/2026/03/about-1-scaled.jpg" alt="Kreative Cashflow About">
+			</div>
+
+			<div class="about-content">
+				<div class="overline data-animate">Why Kreative Cashflow</div>
+				<h2 data-animate data-animate-delay="1">Property Made Simple</h2>
+				<p data-animate data-animate-delay="2">Every property has a purpose. At Kreative Cashflow, we don’t just facilitate purchases — we design financial architecture around property</p>
+				<p data-animate data-animate-delay="2">Our comprehensive approach ensures each acquisition, management decision, and portfolio move fits seamlessly into a larger plan for long-term prosperity.</p>
+				<div class="primary-rule data-animate"></div>
+				<a href="#" class="btn btn-primary" data-animate data-animate-delay="3">
+					Book Your Strategy Session Today &rarr;
+				</a>
+
+				<div class="about-stat-row" data-animate>
+					<?php
+						$counter = 0;
+						$about = [
+							['icon'=> "management", 'title' => 'Comprehensive, One-Stop Solution', 	'desc' => 'From strategy to acquisition, management, and portfolio growth.'],
+							['icon'=> "management", 'title' => 'Strategic Wealth Design', 			'desc' => 'Every property fits into a larger financial blueprint.'],
+							['icon'=> "management", 'title' => 'Tailored Approach', 				'desc' => 'Customized for first-time buyers and seasoned investors alike.'],
+							['icon'=> "shield", 	'title' => 'Hands-On Support', 					'desc' => 'Coordinated inspections, conveyancing, rental management, and post-settlement reviews.'],
+							['icon'=> "shield", 	'title' => 'Trusted Advice', 					'desc' => 'Depreciation']
+						];
+						foreach ( $about as $aitem ) :
+							$counter++;
+					?>
+						<div class="about-stat" data-animate data-animate-delay="<?php echo $counter + 1 ?>">
+							<div class="about-card-icon" aria-hidden="true"><?php echo kc_icon( $aitem['icon'] ); ?></div>
+							<div class="about-stat-des">
+								<h3><?php echo esc_html( $aitem['title'] ); ?></h3>
+								<p><?php echo esc_html( $aitem['desc'] ); ?></p>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
+<!-- ═══════════════════════════════════════════════
+		 IMAGE SEPARATOR SECTION
+═══════════════════════════════════════════════ -->
+<section class="img-separator-section" id="img-separator">
+	<div class="img-separator-inner">
+		<img src="/wp-content/uploads/2026/03/banner-exterior-1-scaled.jpg" alt="Kreative Cashflow About">
+		<img src="/wp-content/uploads/2026/03/banner-exterior-2-scaled.jpg" alt="Kreative Cashflow About">
+	</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+		Clients SECTION
+═══════════════════════════════════════════════ -->
+<?php if ( $sections['clients'] ) : ?>
+<section class="clients-section section-pad" id="clients">
+	<div class="container">
+		<div class="overline">Who we serve</div>
+		<p>Kreative Cashflow is your boutique, one-stop solution for property investment. Our flagship service provides a complete, end-to-end property investment solution. </p>
+		<a href="#form" class="btn btn-primary" data-animate data-animate-delay="3">
+			Book Your Strategy Session Today  &rarr;
+		</a>
+
+		<div class="clients-grid" data-animate>
+			<?php
+			$counter = 0;
+			$clients = [
+				[ 'icon' => 'strategy',		'title' => 'First Home Buyers',					'desc' => 'Education, strategy, and confidence for a smooth property journey.'],
+				[ 'icon' => 'analytics',	'title' => 'Investors & Portfolio Builders',	'desc' => 'Data-driven, strategic acquisition and management to
+grow wealth'],
+				[ 'icon' => 'checklist',	'title' => 'Professional & Busy Clients',		'desc' => 'We handle the complex details so you can focus on your
+life.
+'],
+			];
+			
+			foreach ( $clients as $client ) : 
+			$counter++;
+			?>
+				<article class="clients-card" data-animate data-animate-delay="<?php echo $counter + 1 ?>">
+					<div class="clients-card-icon" aria-hidden="true"><?php echo kc_icon( $client['icon'] ); ?></div>
+					<h3><?php echo esc_html( $client['title'] ); ?></h3>
+					<p><?php echo esc_html( $client['desc'] ); ?></p>
+				</article>
+			<?php endforeach; ?>
+		</div>
+		
+	</div>
+</section>
+<?php endif; ?>
+
+
+<!-- ═══════════════════════════════════════════════
+		 CTA BAND
+═══════════════════════════════════════════════ -->
+<?php if ( $sections['ctaband'] ) : ?>
+
+<div class="cta-band">
+	<div class="cta-band-inner">
+		<h2 data-animate><?php echo wp_kses_post( kc_option( 'kc_cta_title', 'Start Designing Your Property Portfolio Today' ) ); ?></h2>
+		<div style="display:flex;gap:16px;flex-wrap:wrap;" data-animate data-animate-delay="2">
+			<a href="<?php echo esc_url( kc_option( 'kc_cta_url1', '/contact' ) ); ?>" class="btn btn-primary">
+				<?php echo esc_html( kc_option( 'kc_cta_btn1', 'Book Your Strategy Session Today' ) ); ?> &rarr;
+			</a>
+		</div>
+	</div>
+</div>
+<div class="cta-band-vdo-wrap">
+	<video class="cta-band-vdo" role="presentation" autoplay="" muted="" playsinline="" loop="" src="/wp-content/uploads/2026/03/about.mp4"></video>
+</div>
+
+<?php endif; ?>
+
+
+<!-- ═══════════════════════════════════════════════
+		 PROCESS STEPS
+═══════════════════════════════════════════════ -->
+<?php if ( $sections['process'] ) : ?>
+<section class="process-section section-pad" id="how-it-works">
+	<div class="container">
+		<div class="overline" data-animate>How It Works</div>
+		<h2 data-animate data-animate-delay="1">Your Journey, Simplified</h2>
+		<p style="color:rgba(255,255,255,0.5);" data-animate data-animate-delay="2">From the first conversation to holding the keys — here is how we guide you through every step.</p>
+
+		<div class="steps-grid" data-animate>
+			<?php
+			$counter = 0;
+			$processes = [
+				[ 'title' => 'Strategy Session (30–60 min)',	'desc' => 'Align acquisitions with your financial goals.'],
+            	[ 'title' => 'Discovery Call',      			'desc' => 'Tell us your goals, budget, and timeline. We\'ll map out your ideal property journey and introduce you to the right specialists.' ],
+            	[ 'title' => 'Strategy & Finance',  			'desc' => 'Our mortgage brokers get your pre-approval sorted so you can move fast when the right property comes along.' ],
+            	[ 'title' => 'Find & Secure',       			'desc' => 'We help you identify properties, negotiate terms, book inspections, and review contracts before you commit.' ],
+            	[ 'title' => 'Settlement & Beyond', 			'desc' => 'Our solicitors manage settlement and our property managers keep your investment performing for years to come.' ],
+			];
+			
+			foreach ( $processes as $process ) : 
+			$counter++;
+			?>
+				<div class="step-card" data-animate data-animate-delay="<?php echo $counter + 1; ?>">
+					<div class="step-num"><?php echo str_pad( $counter, 2, '0', STR_PAD_LEFT ); ?></div>
+					<h4><?php echo esc_html( $process['title'] ); ?></h4>
+					<p><?php echo esc_html( $process['desc'] ); ?></p>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
+<!-- ═══════════════════════════════════════════════
+		 FEATURED PROPERTIES
+═══════════════════════════════════════════════ -->
+<?php if ( kc_option( 'kc_properties_enable', '1' ) && $sections['properties'] ) : ?>
+<?php
+$properties = new WP_Query([
+	'post_type'		   => 'kc_property',
+	'posts_per_page' => 3,
+	'meta_key'       => 'kc_featured',
+	'meta_value'     => '1',
+]);
+if ( ! $properties->have_posts() ) {
+	$properties = new WP_Query([
+		'post_type'      => 'kc_property',
+		'posts_per_page' => 3,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	]);
+}
+if ( $properties->have_posts() ) : ?>
+<section class="properties-section section-pad" id="properties">
+	<div class="container">
+		<div class="overline" data-animate><?php esc_html_e( 'Featured Properties', 'kreative-cashflow' ); ?></div>
+		<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+			<h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Current ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Listings', 'kreative-cashflow' ); ?></em></h2>
+			<a href="<?php echo esc_url( get_post_type_archive_link( 'kc_property' ) ); ?>" class="btn btn-outline" data-animate><?php esc_html_e( 'View All Properties', 'kreative-cashflow' ); ?></a>
+		</div>
+
+		<div class="properties-grid" data-animate>
+			<?php while ( $properties->have_posts() ) : $properties->the_post();
+				$price   = get_post_meta( get_the_ID(), 'kc_price',     true );
+				$beds    = get_post_meta( get_the_ID(), 'kc_bedrooms',  true );
+				$baths   = get_post_meta( get_the_ID(), 'kc_bathrooms', true );
+				$garage  = get_post_meta( get_the_ID(), 'kc_garage',    true );
+				$address = get_post_meta( get_the_ID(), 'kc_address',   true );
+				$types   = get_the_terms( get_the_ID(), 'property_type' );
+				$badge   = $types ? $types[0]->name : 'Property';
+				$badge_class = ( stripos( $badge, 'invest' ) !== false ) ? 'investment' : '';
+			?>
+				<article class="property-card">
+					<div class="property-card-img">
+						<?php if ( has_post_thumbnail() ) : ?>
+							<?php the_post_thumbnail( 'kc-property', [ 'alt' => get_the_title() ] ); ?>
+						<?php else : ?>
+							<div style="width:100%;height:100%;background:linear-gradient(135deg,#2E3440,#4C566A);display:flex;align-items:center;justify-content:center;">
+								<svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M4 20L24 4L44 20V44H30V30H18V44H4V20Z" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/></svg>
+							</div>
+						<?php endif; ?>
+						<div class="property-badge <?php echo esc_attr( $badge_class ); ?>"><?php echo esc_html( $badge ); ?></div>
+					</div>
+					<div class="property-card-body">
+						<?php if ( $price ) : ?>
+							<div class="property-price"><?php echo esc_html( $price ); ?></div>
+						<?php endif; ?>
+						<div class="property-address"><?php echo $address ? esc_html( $address ) : esc_html( get_the_title() ); ?></div>
+						<?php if ( $beds || $baths || $garage ) : ?>
+							<div class="property-specs">
+								<?php if ( $beds ) : ?>
+									<div class="property-spec">
+										<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9V5a2 2 0 012-2h8a2 2 0 012 2v4M1 9v3M13 9v3M1 7h12"/></svg>
+										<?php echo esc_html( $beds ); ?> bed
+									</div>
+								<?php endif; ?>
+								<?php if ( $baths ) : ?>
+									<div class="property-spec">
+										<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h10v2a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM5 8V4a2 2 0 012-2v0"/></svg>
+										<?php echo esc_html( $baths ); ?> bath
+									</div>
+								<?php endif; ?>
+								<?php if ( $garage ) : ?>
+									<div class="property-spec">
+										<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10V5l5-4 5 4v5M5 10V7h4v3"/></svg>
+										<?php echo esc_html( $garage ); ?> car
+									</div>
+								<?php endif; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</article>
+			<?php endwhile; wp_reset_postdata(); ?>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+<?php endif; ?>
+
+<!-- ═══════════════════════════════════════════════
+		 TESTIMONIALS
+═══════════════════════════════════════════════ -->
+<?php if ( kc_option( 'kc_testimonials_enable', '1' ) && $sections['testimonials'] ) : ?>
 <?php
 $testimonials = new WP_Query([
-  'post_type'      => 'kc_testimonial',
-  'posts_per_page' => 3,
-  'orderby'        => 'rand',
+	'post_type'      => 'kc_testimonial',
+	'posts_per_page' => 3,
+	'orderby'        => 'rand',
 ]);
 ?>
 <section class="testimonials-section section-pad" id="testimonials">
-  <div class="container">
-    <div class="overline" data-animate><?php esc_html_e( 'Client Stories', 'kreative-cashflow' ); ?></div>
-    <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'What Our Clients ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Say', 'kreative-cashflow' ); ?></em></h2>
+	<div class="container">
+		<div class="overline" data-animate><?php esc_html_e( 'Client Stories', 'kreative-cashflow' ); ?></div>
+		<h2 data-animate data-animate-delay="1"><?php esc_html_e( 'What Our Clients ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Say', 'kreative-cashflow' ); ?></em></h2>
 
-    <div class="testimonials-grid" data-animate>
-      <?php if ( $testimonials->have_posts() ) :
-        while ( $testimonials->have_posts() ) : $testimonials->the_post();
-          $rating = get_post_meta( get_the_ID(), 'kc_rating',      true ) ?: 5;
-          $type   = get_post_meta( get_the_ID(), 'kc_client_type', true ) ?: 'Home Buyer';
-      ?>
-        <div class="testimonial-card">
-          <div class="testimonial-stars" aria-label="<?php echo esc_attr( $rating ); ?> out of 5 stars">
-            <?php for ( $s = 0; $s < 5; $s++ ) echo '<span>&#9733;</span>'; ?>
-          </div>
-          <p class="testimonial-text"><?php the_excerpt(); ?></p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', [ 'alt' => get_the_title() ] ); ?>
-            </div>
-            <div class="testimonial-meta">
-              <div class="author-name"><?php the_title(); ?></div>
-              <div class="author-type"><?php echo esc_html( $type ); ?></div>
-            </div>
-          </div>
-        </div>
-      <?php endwhile; wp_reset_postdata();
-      else :
-        // Placeholder testimonials
-        $placeholders = [
-          [ 'name' => 'Sarah & Michael T.', 'type' => 'First Home Buyers', 'text' => 'We had no idea where to start. Kreative Cashflow held our hand through every single step — from finding the property to collecting the keys. Absolutely exceptional service.' ],
-          [ 'name' => 'James R.',           'type' => 'Property Investor', 'text' => 'I\'ve built a portfolio of four properties in two years with their guidance. The financial analysis they provide is second to none. True professionals who genuinely care about outcomes.' ],
-          [ 'name' => 'Priya D.',           'type' => 'First Home Buyer',  'text' => 'As a single buyer, I was nervous about making the wrong decision. My advisor was honest, patient, and found me a property under budget with better yield than I expected.' ],
-        ];
-        foreach ( $placeholders as $t ) : ?>
-          <div class="testimonial-card">
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testimonial-text">"<?php echo esc_html( $t['text'] ); ?>"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" style="background:var(--gold-lt);"></div>
-              <div class="testimonial-meta">
-                <div class="author-name"><?php echo esc_html( $t['name'] ); ?></div>
-                <div class="author-type"><?php echo esc_html( $t['type'] ); ?></div>
-              </div>
-            </div>
-          </div>
-      <?php endforeach; endif; ?>
-    </div>
-  </div>
+		<div class="testimonials-grid" data-animate>
+			<?php if ( $testimonials->have_posts() ) :
+				while ( $testimonials->have_posts() ) : $testimonials->the_post();
+					$rating = get_post_meta( get_the_ID(), 'kc_rating',      true ) ?: 5;
+					$type   = get_post_meta( get_the_ID(), 'kc_client_type', true ) ?: 'Home Buyer';
+			?>
+				<div class="testimonial-card">
+					<div class="testimonial-stars" aria-label="<?php echo esc_attr( $rating ); ?> out of 5 stars">
+						<?php for ( $s = 0; $s < 5; $s++ ) echo '<span>&#9733;</span>'; ?>
+					</div>
+					<p class="testimonial-text"><?php the_excerpt(); ?></p>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">
+							<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', [ 'alt' => get_the_title() ] ); ?>
+						</div>
+						<div class="testimonial-meta">
+							<div class="author-name"><?php the_title(); ?></div>
+							<div class="author-type"><?php echo esc_html( $type ); ?></div>
+						</div>
+					</div>
+				</div>
+			<?php endwhile; wp_reset_postdata();
+			else :
+				// Placeholder testimonials
+				$placeholders = [
+					[ 'name' => 'Sarah & Michael T.', 'type' => 'First Home Buyers', 'text' => 'We had no idea where to start. Kreative Cashflow held our hand through every single step — from finding the property to collecting the keys. Absolutely exceptional service.' ],
+					[ 'name' => 'James R.',           'type' => 'Property Investor', 'text' => 'I\'ve built a portfolio of four properties in two years with their guidance. The financial analysis they provide is second to none. True professionals who genuinely care about outcomes.' ],
+					[ 'name' => 'Priya D.',           'type' => 'First Home Buyer',  'text' => 'As a single buyer, I was nervous about making the wrong decision. My advisor was honest, patient, and found me a property under budget with better yield than I expected.' ],
+				];
+				foreach ( $placeholders as $t ) : ?>
+					<div class="testimonial-card">
+						<div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+						<p class="testimonial-text">"<?php echo esc_html( $t['text'] ); ?>"</p>
+						<div class="testimonial-author">
+							<div class="testimonial-avatar" style="background:var(--primary-lt);"></div>
+							<div class="testimonial-meta">
+								<div class="author-name"><?php echo esc_html( $t['name'] ); ?></div>
+								<div class="author-type"><?php echo esc_html( $t['type'] ); ?></div>
+							</div>
+						</div>
+					</div>
+			<?php endforeach; endif; ?>
+		</div>
+	</div>
 </section>
+<?php endif; ?>
+
 
 <!-- ═══════════════════════════════════════════════
-     CTA BAND
+		Form
 ═══════════════════════════════════════════════ -->
-<div class="cta-band">
-  <div class="cta-band-inner">
-    <h2 data-animate><?php esc_html_e( 'Ready to Start Your Property ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Journey?', 'kreative-cashflow' ); ?></em></h2>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;" data-animate data-animate-delay="2">
-      <a href="<?php echo esc_url( kc_option( 'kc_hero_cta1_url', '/contact' ) ); ?>" class="btn btn-gold">
-        <?php esc_html_e( 'Book a Free Consultation', 'kreative-cashflow' ); ?> &rarr;
-      </a>
-      <a href="tel:<?php echo esc_attr( preg_replace( '/\s/', '', kc_option( 'kc_phone', '1300000000' ) ) ); ?>" class="btn btn-outline" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2);">
-        <?php echo esc_html( kc_option( 'kc_phone', '1300 000 000' ) ); ?>
-      </a>
-    </div>
-  </div>
+<?php if ( $sections['form'] ) : ?>
+<div class="form" id="form">
+	<div class="container" data-animate>
+		<div class="overline in-view" data-animate>Get Started</div>
+		<h2 data-animate>Start Designing Your Property Portfolio Today</h2>
+		<p data-animate>We'd love to hear from you! Please fill out the form and we'll get back to you as soon as possible.</p>
+		<script src="https://js-ap1.hsforms.net/forms/embed/442945694.js" defer></script>
+		<div class="hs-form-frame" data-region="ap1" data-form-id="7b61df4e-d9fc-46dd-8349-b8234964a78d" data-portal-id="442945694"></div>
+	</div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     LATEST BLOG / RESOURCES
-═══════════════════════════════════════════════ -->
-<?php
-$blog_posts = new WP_Query([
-  'post_type'      => 'post',
-  'posts_per_page' => 3,
-  'orderby'        => 'date',
-  'order'          => 'DESC',
-]);
-if ( $blog_posts->have_posts() ) : ?>
-<section class="blog-section section-pad" id="insights">
-  <div class="container">
-    <div class="overline" data-animate><?php esc_html_e( 'Property Insights', 'kreative-cashflow' ); ?></div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
-      <h2 data-animate data-animate-delay="1"><?php esc_html_e( 'Latest ', 'kreative-cashflow' ); ?><em><?php esc_html_e( 'Resources', 'kreative-cashflow' ); ?></em></h2>
-      <a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="btn btn-outline" data-animate><?php esc_html_e( 'All Articles', 'kreative-cashflow' ); ?></a>
-    </div>
-
-    <div class="blog-grid" data-animate>
-      <?php while ( $blog_posts->have_posts() ) : $blog_posts->the_post();
-        $cats = get_the_category();
-        $cat_name = $cats ? $cats[0]->name : 'Property';
-      ?>
-        <article class="blog-card">
-          <div class="blog-card-img">
-            <?php if ( has_post_thumbnail() ) : ?>
-              <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'kc-blog', [ 'alt' => get_the_title() ] ); ?></a>
-            <?php else : ?>
-              <div style="width:100%;height:100%;background:linear-gradient(135deg,#2E3440,#4C566A);display:flex;align-items:center;justify-content:center;min-height:200px;">
-                <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><path d="M4 20L24 4L44 20V44H30V30H18V44H4V20Z" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/></svg>
-              </div>
-            <?php endif; ?>
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-cat"><?php echo esc_html( $cat_name ); ?></div>
-            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <p><?php the_excerpt(); ?></p>
-            <div class="blog-meta">
-              <span><?php the_date(); ?></span>
-              <span>&middot;</span>
-              <span><?php echo esc_html( get_the_author() ); ?></span>
-            </div>
-          </div>
-        </article>
-      <?php endwhile; wp_reset_postdata(); ?>
-    </div>
-  </div>
-</section>
 <?php endif; ?>
 
 <?php get_footer();

@@ -1,9 +1,10 @@
 </div><!-- #main-content -->
 
 <footer id="site-footer" role="contentinfo">
-
+<?php if ( $sections['footer-main'] ) : ?>
   <div class="footer-main">
-
+    <?php $footer_hide = true; ?>
+    <?php if($footer_hide): ?>
     <!-- Brand Column -->
     <div class="footer-brand">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo" rel="home">
@@ -42,6 +43,7 @@
         <?php endif; ?>
       </div>
     </div>
+    <?php endif; ?>
 
     <!-- Footer Widget Columns -->
     <?php for ( $i = 1; $i <= 3; $i++ ) : ?>
@@ -55,6 +57,7 @@
     <?php endfor; ?>
 
   </div><!-- .footer-main -->
+  <?php endif; ?>
 
   <!-- Footer Bottom Bar -->
   <div class="footer-bottom">
@@ -67,10 +70,10 @@
     <p>
       <?php
       $legal = [
-        __( 'Privacy Policy',     'kreative-cashflow' ) => '/privacy-policy',
-        __( 'Terms of Service',   'kreative-cashflow' ) => '/terms',
+        //__( 'Privacy Policy',     'kreative-cashflow' ) => '/privacy-policy',
+        //__( 'Terms of Service',   'kreative-cashflow' ) => '/terms',
         __( 'Disclaimer',         'kreative-cashflow' ) => '/disclaimer',
-        __( 'Credit Guide',       'kreative-cashflow' ) => '/credit-guide',
+        //__( 'Credit Guide',       'kreative-cashflow' ) => '/credit-guide',
       ];
       $links = [];
       foreach ( $legal as $label => $url ) {

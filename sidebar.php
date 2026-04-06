@@ -18,11 +18,11 @@ if ( is_active_sidebar( 'sidebar-blog' ) ) {
     </div>
 
     <!-- Book Consultation Widget -->
-    <div class="widget" style="background:var(--slate);border-color:transparent;">
-      <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;"><?php esc_html_e( 'Free Consultation', 'kreative-cashflow' ); ?></div>
+    <div class="widget" style="background:var(--secondary);border-color:transparent;">
+      <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;"><?php esc_html_e( 'Free Consultation', 'kreative-cashflow' ); ?></div>
       <h5 class="widget-title" style="color:var(--white);border-color:rgba(201,168,76,0.3);"><?php esc_html_e( 'Ready to Start?', 'kreative-cashflow' ); ?></h5>
       <p style="color:rgba(255,255,255,0.5);font-size:0.88rem;margin-bottom:20px;"><?php esc_html_e( 'Book a free consultation with one of our property advisors today.', 'kreative-cashflow' ); ?></p>
-      <a href="/contact" class="btn btn-gold" style="width:100%;justify-content:center;"><?php esc_html_e( 'Book Now', 'kreative-cashflow' ); ?> &rarr;</a>
+      <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;"><?php esc_html_e( 'Book Now', 'kreative-cashflow' ); ?> &rarr;</a>
     </div>
 
     <!-- Recent Posts -->

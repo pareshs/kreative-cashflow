@@ -4,6 +4,11 @@
  *
  * @package KreativeCashflow
  */
+
+$sections = [
+  'footer-main' => false,
+];
+
 get_header(); ?>
 
 <div class="page-hero">

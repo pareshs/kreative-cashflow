@@ -3,41 +3,52 @@ Theme Name:  Kreative Cashflow
 Theme URI:   https://kreativecashflow.com.au
 Author:      Kreative Cashflow
 Author URI:  https://kreativecashflow.com.au
-Description: A premium WordPress theme for Kreative Cashflow — your complete property partner. Built with Cormorant Garamond & DM Sans, gold/slate/cream palette.
-Version:     1.0.0
+Description: A premium WordPress theme for Kreative Cashflow — your complete property partner. Built with Cormorant Garamond & DM Sans, --primary/slate/cream palette. NOW with full Gutenberg/Block Editor support, 80+ customizer options, and 6 page templates.
+Version:     2.5.5
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
 License:     GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kreative-cashflow
-Tags:        real-estate, property, business, one-column, two-columns, custom-menu, featured-images, footer-widgets, full-width-template, theme-options
+Tags:        real-estate, property, business, block-editor, block-patterns, custom-menu, featured-images, footer-widgets, full-width-template, theme-options, wide-blocks
 */
 
 /* ============================================================
    DESIGN TOKENS
    ============================================================ */
 :root {
-  --ink:        #0F0E0A;
-  --cream:      #F7F4EE;
-  --gold:       #C9A84C;
-  --gold-lt:    #E8D49A;
-  --gold-dk:    #8B6914;
-  --slate:      #2E3440;
-  --slate-md:   #4C566A;
-  --slate-lt:   #8C98A8;
-  --white:      #FFFFFF;
-  --rule:       rgba(201,168,76,0.25);
+  --body:         #0F0E0A;
+  --cream:        #F7F4EE;
+  --primary:      #C9A84C;
+  --primary-lt:   #E8D49A;
+  --primary-dk:   #8B6914;
+  --secondary:    #2E3440;
+  --secondary-md: #4C566A;
+  --secondary-lt: #8C98A8;
+  --white:        #FFFFFF;
+  --rule:         rgba(201,168,76,0.25);
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', system-ui, sans-serif;
-  --font-mono:  'DM Mono', 'Courier New', monospace;
+  /*
+  --font-header: 'Cormorant Garamond', Georgia, serif;
+  --font-body:  'DM Sans', system-ui, sans-serif;
+  */
+  --font-header:  'Spectral', serif;
+  --font-body:    'Open Sans', sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
 
-  --radius:     0px;
-  --transition: 0.25s ease;
+  --radius:       0px;
+  --transition:   0.25s ease;
 
-  --container:  1280px;
-  --gap:        80px;
+  --container:    1280px;
+  --container-md: 960px;
+  --gap:          80px;
+
+  /*
+  Override
+  */
+  --hsf-background__padding:          0;
+  --hsf-default-background__padding:  0;
 }
 
 /* ============================================================
@@ -45,12 +56,12 @@ Tags:        real-estate, property, business, one-column, two-columns, custom-me
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 18px; }
 
 body {
   background: var(--cream);
-  color: var(--ink);
-  font-family: var(--font-sans);
+  color: var(--body);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.7;
   overflow-x: hidden;
@@ -66,18 +77,18 @@ body::after {
 }
 
 img, video { max-width: 100%; height: auto; display: block; }
-a { color: var(--gold-dk); text-decoration: none; transition: color var(--transition); }
-a:hover { color: var(--gold); }
+a { color: var(--primary-dk); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--primary); }
 
 /* ============================================================
    TYPOGRAPHY
    ============================================================ */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  line-height: 1.15;
+  font-family: var(--font-header);
+  font-weight: 600;
+  line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--slate);
+  color: var(--secondary);
 }
 
 h1 { font-size: clamp(3rem, 6vw, 5.5rem); }
@@ -87,19 +98,19 @@ h4 { font-size: 1.4rem; font-weight: 600; }
 h5 { font-size: 1.1rem; font-weight: 600; }
 h6 { font-size: 0.95rem; font-weight: 600; }
 
-p { color: var(--slate-md); margin-bottom: 1.2em; max-width: 680px; }
+p { color: var(--secondary-md); margin-bottom: 1.2em; max-width: 680px; }
 p:last-child { margin-bottom: 0; }
 
-strong { color: var(--slate); font-weight: 600; }
+strong { color: var(--secondary); font-weight: 600; }
 em { font-style: italic; }
 
 blockquote {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  color: var(--slate);
-  border-left: 3px solid var(--gold);
+  color: var(--secondary);
+  border-left: 3px solid var(--primary);
   padding: 16px 0 16px 32px;
   margin: 2em 0;
   line-height: 1.4;
@@ -111,17 +122,17 @@ blockquote cite {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   font-style: normal;
   margin-top: 12px;
 }
 
 .overline {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -133,18 +144,22 @@ blockquote cite {
   display: block;
   width: 32px;
   height: 1px;
-  background: var(--gold);
+  background: var(--primary);
   flex-shrink: 0;
 }
 
 /* ============================================================
    LAYOUT UTILITIES
    ============================================================ */
-.container {
+.container, .container-md {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gap);
+}
+
+.container-md{
+  max-width: var(--container-md);
 }
 
 .section-pad {
@@ -162,10 +177,10 @@ blockquote cite {
 .flex-center { display: flex; align-items: center; justify-content: center; }
 .flex-between { display: flex; align-items: center; justify-content: space-between; }
 
-.gold-rule {
+primary-rule {
   width: 60px;
   height: 2px;
-  background: var(--gold);
+  background: var(--primary);
   margin: 24px 0;
 }
 
@@ -180,7 +195,7 @@ blockquote cite {
 }
 
 #site-header.scrolled {
-  background: var(--slate);
+  background: var(--secondary);
   box-shadow: 0 2px 40px rgba(0,0,0,0.2);
 }
 
@@ -214,7 +229,7 @@ blockquote cite {
 }
 
 .site-branding .logo-wordmark .part1 {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--white);
@@ -222,10 +237,10 @@ blockquote cite {
 }
 
 .site-branding .logo-wordmark .part2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--gold);
+  font-weight: 400;
+  color: var(--primary);
   letter-spacing: 0.04em;
 }
 
@@ -234,6 +249,7 @@ blockquote cite {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-lefT: auto;
 }
 
 #primary-nav .nav-menu {
@@ -263,7 +279,7 @@ blockquote cite {
   position: absolute;
   bottom: 4px; left: 16px; right: 16px;
   height: 1px;
-  background: var(--gold);
+  background: var(--primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition);
@@ -292,8 +308,8 @@ blockquote cite {
   top: 100%;
   left: 0;
   min-width: 220px;
-  background: var(--slate);
-  border-top: 2px solid var(--gold);
+  background: var(--secondary);
+  border-top: 2px solid var(--primary);
   padding: 8px 0;
   list-style: none;
   opacity: 0;
@@ -316,23 +332,53 @@ blockquote cite {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   transition: color var(--transition), padding-left var(--transition);
 }
 
 #primary-nav .nav-menu .sub-menu a:hover {
-  color: var(--gold);
+  color: var(--primary);
   padding-left: 32px;
 }
 
+/* Primary Nav Mobile */
+#primary-nav .nav-menu,
+.nav-cta { display: none; }
+
+#primary-nav.mobile-open .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--secondary);
+    padding: 120px 40px 60px;
+    align-items: flex-start;
+    gap: 0;
+    z-index: 400;
+}
+
+#primary-nav.mobile-open .nav-menu > li > a {
+    font-size: 1.5rem;
+    font-family: var(--font-header);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--white);
+    padding: 14px 0;
+}
+
+#primary-nav.mobile-open .nav-cta {
+    display: inline-flex;
+    margin-top: 32px;
+    margin-left: 0;
+}
 /* CTA Button in Nav */
 .nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: var(--gold);
-  color: var(--slate) !important;
+  background: var(--primary);
+  color: var(--secondary) !important;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -343,19 +389,20 @@ blockquote cite {
 }
 
 .nav-cta:hover {
-  background: var(--gold-dk);
+  background: var(--primary-dk);
   color: var(--white) !important;
 }
 
 /* Hamburger */
 .menu-toggle {
-  display: none;
+  display: flex;
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
   flex-direction: column;
   gap: 5px;
+  z-index: 1000;
 }
 
 .menu-toggle span {
@@ -376,7 +423,7 @@ blockquote cite {
 .hero-section {
   position: relative;
   min-height: 100vh;
-  background: var(--slate);
+  background: var(--secondary);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -392,7 +439,23 @@ blockquote cite {
   background-size: 60px 60px;
   pointer-events: none;
 }
-
+.hero-vdo, .about-vdo, .cta-band-vdo {
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.hero-vdo-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46,52,64,0.9);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .hero-orb {
   position: absolute;
   right: -100px;
@@ -401,7 +464,7 @@ blockquote cite {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
   background: radial-gradient(circle at center, rgba(201,168,76,0.05), transparent 70%);
   pointer-events: none;
 }
@@ -411,7 +474,7 @@ blockquote cite {
   position: absolute;
   inset: 70px;
   border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.10);
 }
 
 .hero-orb::after {
@@ -419,7 +482,7 @@ blockquote cite {
   position: absolute;
   inset: 140px;
   border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.08);
 }
 
 .hero-content {
@@ -434,7 +497,7 @@ blockquote cite {
   font-size: 0.68rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary);
   margin-bottom: 28px;
 }
 
@@ -446,15 +509,23 @@ blockquote cite {
 
 .hero-section h1 em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .hero-section .hero-desc {
   font-size: 1.1rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.65);
   max-width: 500px;
   line-height: 1.85;
   margin-bottom: 0;
+}
+
+.hero-section .hero-desc strong{
+  color: rgba(255,255,255,1);
+}
+
+.hero-ctas{
+  margin-top: 20px;
 }
 
 .hero-stats {
@@ -475,20 +546,20 @@ blockquote cite {
 .hero-stat:last-child { border-right: none; }
 
 .hero-stat-num {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
-  font-weight: 300;
-  color: var(--gold);
+  font-family: var(--font-header);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--primary);
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .hero-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 1rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,1);
   margin-top: 8px;
 }
 
@@ -512,7 +583,7 @@ blockquote cite {
   align-items: center;
   gap: 10px;
   padding: 16px 36px;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -525,45 +596,45 @@ blockquote cite {
 }
 
 .btn-primary {
-  background: var(--slate);
-  color: var(--gold);
+  background: var(--secondary);
+  color: var(--primary);
 }
 
 .btn-primary:hover {
-  background: var(--gold);
-  color: var(--slate);
+  background: var(--primary);
+  color: var(--secondary);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--slate);
-  border: 1px solid var(--slate);
+  color: var(--secondary-lt);
+  border: 1px solid var(--secondary);
 }
 
 .btn-outline:hover {
-  background: var(--slate);
-  color: var(--gold);
+  background: var(--secondary);
+  color: var(--primary);
 }
 
-.btn-gold {
-  background: var(--gold);
-  color: var(--slate);
+.btn-primary {
+  background: var(--primary);
+  color: var(--secondary);
 }
 
-.btn-gold:hover {
-  background: var(--gold-dk);
+.btn-primary:hover {
+  background: var(--primary-dk);
   color: var(--white);
 }
 
-.btn-outline-gold {
+.btn-outline-primary {
   background: transparent;
-  color: var(--gold-dk);
-  border: 1px solid var(--gold);
+  color: var(--primary-dk);
+  border: 1px solid var(--primary);
 }
 
-.btn-outline-gold:hover {
-  background: var(--gold);
-  color: var(--slate);
+.btn-outline-primary:hover {
+  background: var(--primary);
+  color: var(--secondary);
 }
 
 /* ============================================================
@@ -575,7 +646,7 @@ blockquote cite {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
@@ -584,7 +655,7 @@ blockquote cite {
 
 .service-card {
   background: var(--white);
-  padding: 40px 36px;
+  padding: 20px;
   transition: background var(--transition);
   position: relative;
   overflow: hidden;
@@ -595,7 +666,7 @@ blockquote cite {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--gold);
+  background: var(--primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition);
@@ -609,10 +680,10 @@ blockquote cite {
   transform: scaleX(1);
 }
 
-.service-card-icon {
+.service-card-icon{
   width: 48px;
   height: 48px;
-  color: var(--gold);
+  color: var(--primary);
   margin-bottom: 24px;
 }
 
@@ -626,7 +697,18 @@ blockquote cite {
   line-height: 1.7;
   margin-bottom: 0;
 }
+/* ============================================================
+   IMAGE SEPARATOR
+   ============================================================ */
+.img-separator-section{
 
+}
+.img-separator-inner {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 5px;
+  align-items: center;
+}
 /* ============================================================
    ABOUT / WHY US SECTION
    ============================================================ */
@@ -636,19 +718,27 @@ blockquote cite {
 
 .about-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 80px;
   align-items: center;
 }
 
 .about-image-wrap {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .about-image-wrap img {
   width: 100%;
+  height: 100%;
   aspect-ratio: 4/5;
   object-fit: cover;
+  animation: zoom 15s infinite alternate;
+}
+@keyframes zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
 }
 
 .about-image-wrap::before {
@@ -662,40 +752,75 @@ blockquote cite {
 
 .about-stat-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   margin-top: 40px;
 }
-
 .about-stat {
-  padding: 24px;
+  padding: 14px;
   background: var(--white);
-  border-left: 3px solid var(--gold);
+  border-left: 3px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
-
+.about-card-icon {
+  color: var(--secondary-md);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--primary-lt);
+  flex-shrink: 0;
+  padding: 10px;
+}
 .about-stat .stat-num {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: var(--slate);
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--secondary);
   line-height: 1;
-  letter-spacing: -0.02em;
 }
 
 .about-stat .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary);
   margin-top: 6px;
+}
+
+/* ============================================================
+   CLIENTS SECTION
+   ============================================================ */
+.clients-section {
+  background: var(--white);
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.clients-card {
+  padding: 40px 36px;
+  border: 1px solid var(--rule);
+  position: relative;
+  background: var(--cream);
+}
+
+.clients-card-icon{
+  width: 48px;
+  height: 48px;
+  color: var(--primary);
+  margin-bottom: 24px;
 }
 
 /* ============================================================
    PROCESS STEPS SECTION
    ============================================================ */
 .process-section {
-  background: var(--slate);
+  background: var(--secondary);
 }
 
 .process-section h2 {
@@ -703,28 +828,28 @@ blockquote cite {
 }
 
 .process-section h2 em {
-  color: var(--gold);
+  color: var(--primary);
   font-style: italic;
 }
 
 .process-section .overline {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .process-section .overline::before {
-  background: var(--gold);
+  background: var(--primary);
 }
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   background: rgba(201,168,76,0.1);
   margin-top: 56px;
 }
 
 .step-card {
-  background: var(--slate);
+  background: var(--secondary);
   padding: 40px 32px;
   position: relative;
   transition: background var(--transition);
@@ -735,17 +860,17 @@ blockquote cite {
 }
 
 .step-num {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 4rem;
-  font-weight: 300;
-  color: rgba(201,168,76,0.15);
+  font-weight: 400;
+  color: rgba(201,168,76,0.45);
   line-height: 1;
   letter-spacing: -0.04em;
   margin-bottom: 20px;
 }
 
 .step-card h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--white);
@@ -754,7 +879,7 @@ blockquote cite {
 
 .step-card p {
   font-size: 0.88rem;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   margin-bottom: 0;
   max-width: none;
 }
@@ -782,9 +907,9 @@ blockquote cite {
 
 .testimonial-card::before {
   content: '"';
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 80px;
-  color: var(--gold-lt);
+  color: var(--primary-lt);
   line-height: 1;
   position: absolute;
   top: 20px;
@@ -796,16 +921,16 @@ blockquote cite {
   display: flex;
   gap: 4px;
   margin-bottom: 20px;
-  color: var(--gold);
+  color: var(--primary);
   font-size: 0.85rem;
 }
 
 .testimonial-text {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.1rem;
   font-style: italic;
-  font-weight: 300;
-  color: var(--slate);
+  font-weight: 400;
+  color: var(--secondary);
   line-height: 1.65;
   margin-bottom: 24px;
   max-width: none;
@@ -822,7 +947,7 @@ blockquote cite {
   height: 44px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--gold-lt);
+  background: var(--primary-lt);
   flex-shrink: 0;
 }
 
@@ -835,7 +960,7 @@ blockquote cite {
 .testimonial-meta .author-name {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--slate);
+  color: var(--secondary);
 }
 
 .testimonial-meta .author-type {
@@ -843,7 +968,7 @@ blockquote cite {
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary);
   margin-top: 2px;
 }
 
@@ -893,8 +1018,8 @@ blockquote cite {
   position: absolute;
   top: 16px;
   left: 16px;
-  background: var(--gold);
-  color: var(--slate);
+  background: var(--primary);
+  color: var(--secondary);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.2em;
@@ -903,25 +1028,25 @@ blockquote cite {
   font-weight: 500;
 }
 
-.property-badge.investment { background: var(--slate); color: var(--gold); }
-.property-badge.sold { background: var(--slate-md); color: var(--white); }
+.property-badge.investment { background: var(--secondary); color: var(--primary); }
+.property-badge.sold { background: var(--secondary-md); color: var(--white); }
 
 .property-card-body {
   padding: 28px;
 }
 
 .property-price {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--slate);
+  color: var(--secondary);
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
 
 .property-address {
   font-size: 0.85rem;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   margin-bottom: 16px;
 }
 
@@ -940,21 +1065,27 @@ blockquote cite {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--slate-md);
+  color: var(--secondary-md);
 }
 
 .property-spec svg {
   width: 14px;
   height: 14px;
-  color: var(--gold);
+  color: var(--primary);
   flex-shrink: 0;
 }
 
 /* ============================================================
    CTA BAND
    ============================================================ */
+.cta-band-vdo-wrap{
+  position: relative;
+  height: 500px;
+  max-height: 500px;
+  width: 100%;
+}
 .cta-band {
-  background: var(--slate);
+  background: var(--secondary);
   padding: 80px var(--gap);
   position: relative;
   overflow: hidden;
@@ -1002,7 +1133,7 @@ blockquote cite {
 }
 
 .cta-band h2 em {
-  color: var(--gold);
+  color: var(--primary);
   font-style: italic;
 }
 
@@ -1053,7 +1184,7 @@ blockquote cite {
   font-size: 0.62rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary);
   margin-bottom: 10px;
 }
 
@@ -1065,13 +1196,13 @@ blockquote cite {
 }
 
 .blog-card h3 a {
-  color: var(--slate);
+  color: var(--secondary);
   text-decoration: none;
   transition: color var(--transition);
 }
 
 .blog-card h3 a:hover {
-  color: var(--gold-dk);
+  color: var(--primary-dk);
 }
 
 .blog-card p {
@@ -1091,7 +1222,7 @@ blockquote cite {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
 }
 
 /* ============================================================
@@ -1117,7 +1248,7 @@ blockquote cite {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   margin-bottom: 8px;
 }
 
@@ -1128,9 +1259,9 @@ blockquote cite {
   padding: 14px 18px;
   background: var(--white);
   border: 1px solid rgba(46,52,64,0.15);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--ink);
+  color: var(--body);
   outline: none;
   transition: border-color var(--transition);
   appearance: none;
@@ -1140,7 +1271,7 @@ blockquote cite {
 .contact-form-wrap input:focus,
 .contact-form-wrap select:focus,
 .contact-form-wrap textarea:focus {
-  border-color: var(--gold);
+  border-color: var(--primary);
 }
 
 .contact-form-wrap textarea {
@@ -1158,12 +1289,12 @@ blockquote cite {
 .contact-info-icon {
   width: 40px;
   height: 40px;
-  background: var(--gold);
+  background: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--slate);
+  color: var(--secondary);
 }
 
 .contact-info-icon svg { width: 18px; height: 18px; }
@@ -1173,22 +1304,30 @@ blockquote cite {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   margin-bottom: 4px;
 }
 
 .contact-info-text .value {
   font-size: 0.95rem;
-  color: var(--slate);
+  color: var(--secondary);
   font-weight: 500;
   margin-bottom: 0;
 }
-
+/* ============================================================
+   FORM SECTION
+   ============================================================ */
+.form{
+  padding: 40px;
+}
+.hsfc-Step .hsfc-Step__Content{
+  padding: 0!important;
+}
 /* ============================================================
    PAGE HERO (inner pages)
    ============================================================ */
 .page-hero {
-  background: var(--slate);
+  background: var(--secondary);
   padding: 160px var(--gap) 80px;
   position: relative;
   overflow: hidden;
@@ -1216,7 +1355,7 @@ blockquote cite {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.page-hero h1 em { color: var(--gold); font-style: italic; }
+.page-hero h1 em { color: var(--primary); font-style: italic; }
 
 .page-hero .breadcrumb {
   display: flex;
@@ -1231,7 +1370,7 @@ blockquote cite {
 }
 
 .page-hero .breadcrumb a {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .page-hero .breadcrumb span { color: rgba(255,255,255,0.25); }
@@ -1240,7 +1379,7 @@ blockquote cite {
    FOOTER
    ============================================================ */
 #site-footer {
-  background: var(--ink);
+  background: var(--body);
 }
 
 .footer-main {
@@ -1262,17 +1401,17 @@ blockquote cite {
 }
 
 .footer-brand .footer-logo .part1 {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--white);
 }
 
 .footer-brand .footer-logo .part2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.4rem;
-  font-weight: 300;
-  color: var(--gold);
+  font-weight: 400;
+  color: var(--primary);
 }
 
 .footer-brand p {
@@ -1295,13 +1434,13 @@ blockquote cite {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--slate-lt);
+  color: var(--secondary-lt);
   transition: all var(--transition);
 }
 
 .footer-social-link:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--primary);
+  color: var(--primary);
   background: rgba(201,168,76,0.08);
 }
 
@@ -1312,7 +1451,7 @@ blockquote cite {
   font-size: 0.65rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary);
   font-weight: 400;
   margin-bottom: 20px;
 }
@@ -1342,14 +1481,14 @@ blockquote cite {
   display: block;
   width: 16px;
   height: 1px;
-  background: var(--gold);
+  background: var(--primary);
   opacity: 0;
   transition: opacity var(--transition);
   flex-shrink: 0;
 }
 
 .footer-col ul a:hover {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .footer-col ul a:hover::before {
@@ -1375,7 +1514,7 @@ blockquote cite {
 }
 
 .footer-bottom a {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 /* ============================================================
@@ -1389,13 +1528,13 @@ blockquote cite {
 }
 
 .sidebar .widget-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--slate);
+  color: var(--secondary);
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 2px solid var(--gold);
+  border-bottom: 2px solid var(--primary);
 }
 
 .sidebar .widget ul {
@@ -1411,11 +1550,11 @@ blockquote cite {
 }
 
 .sidebar .widget ul li a {
-  color: var(--slate-md);
+  color: var(--secondary-md);
 }
 
 .sidebar .widget ul li a:hover {
-  color: var(--gold-dk);
+  color: var(--primary-dk);
 }
 
 /* ============================================================
@@ -1441,7 +1580,7 @@ blockquote cite {
 .entry-content ol {
   padding-left: 1.5em;
   margin-bottom: 1.4em;
-  color: var(--slate-md);
+  color: var(--secondary-md);
 }
 
 .entry-content li {
@@ -1450,19 +1589,19 @@ blockquote cite {
 }
 
 .entry-content ul li::marker {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .entry-content a {
-  color: var(--gold-dk);
+  color: var(--primary-dk);
   text-decoration: underline;
-  text-decoration-color: var(--gold-lt);
+  text-decoration-color: var(--primary-lt);
   text-underline-offset: 3px;
 }
 
 .entry-content a:hover {
-  color: var(--gold);
-  text-decoration-color: var(--gold);
+  color: var(--primary);
+  text-decoration-color: var(--primary);
 }
 
 .entry-content img {
@@ -1477,6 +1616,108 @@ blockquote cite {
 }
 
 /* ============================================================
+   PAGE TEMPLATES — ENHANCED STYLING
+   ============================================================ */
+
+/* Clean page wrapper — no blog styling */
+.page-template-default .entry-content,
+.page-template-template-full-width .entry-content,
+.page-template-template-split .entry-content {
+  max-width: none;
+}
+
+/* Remove post metadata on pages */
+.page .blog-meta,
+.page .author-box,
+.page .post-navigation {
+  display: none;
+}
+
+/* Full-width template specific */
+.page-template-template-full-width .entry-content h2 {
+  margin-top: 2em;
+  font-size: 2rem;
+}
+
+.page-template-template-full-width .entry-content h3 {
+  margin-top: 1.5em;
+  font-size: 1.4rem;
+}
+
+/* Split layout responsive improvements */
+.template-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.template-split-sticky {
+  position: sticky;
+  top: 120px;
+}
+
+@media (max-width: 960px) {
+  .template-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .template-split-sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Page content cards */
+.content-card {
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.content-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Page features grid */
+.page-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.page-feature {
+  padding: 32px;
+  background: var(--cream);
+  border-left: 3px solid var(--primary);
+}
+
+.page-feature h4 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.page-feature p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  max-width: none;
+}
+
+@media (max-width: 768px) {
+  .page-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
    FORMS (WP / WPForms / CF7 compatibility)
    ============================================================ */
 input[type="text"],
@@ -1487,13 +1728,13 @@ input[type="search"],
 input[type="number"],
 select,
 textarea {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   border-radius: 0;
 }
 
 input[type="submit"],
 button[type="submit"] {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   border-radius: 0;
   cursor: pointer;
 }
@@ -1507,7 +1748,7 @@ button[type="submit"] {
   background: var(--white);
   border: 1px solid rgba(46,52,64,0.15);
   font-size: 0.95rem;
-  color: var(--ink);
+  color: var(--body);
   outline: none;
   transition: border-color var(--transition);
   border-radius: 0;
@@ -1515,12 +1756,12 @@ button[type="submit"] {
 
 .wpcf7-form input:focus,
 .wpcf7-form textarea:focus {
-  border-color: var(--gold);
+  border-color: var(--primary);
 }
 
 .wpcf7-form input[type="submit"] {
-  background: var(--slate);
-  color: var(--gold);
+  background: var(--secondary);
+  color: var(--primary);
   border: none;
   padding: 16px 40px;
   font-size: 0.8rem;
@@ -1531,27 +1772,27 @@ button[type="submit"] {
 }
 
 .wpcf7-form input[type="submit"]:hover {
-  background: var(--gold);
-  color: var(--slate);
+  background: var(--primary);
+  color: var(--secondary);
 }
 
 /* ============================================================
    GUTENBERG / BLOCK STYLES
    ============================================================ */
 .wp-block-quote {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  color: var(--slate);
-  border-left: 3px solid var(--gold);
+  color: var(--secondary);
+  border-left: 3px solid var(--primary);
   padding: 16px 32px;
   margin: 2em 0;
 }
 
 .wp-block-pullquote {
-  border-top: 3px solid var(--gold);
-  border-bottom: 3px solid var(--gold);
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
   padding: 48px 0;
   text-align: center;
 }
@@ -1562,17 +1803,17 @@ button[type="submit"] {
 }
 
 .wp-block-pullquote p {
-  font-family: var(--font-serif);
+  font-family: var(--font-header);
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  color: var(--slate);
+  color: var(--secondary);
   max-width: 100%;
 }
 
 .wp-block-button__link {
-  background: var(--slate);
-  color: var(--gold);
+  background: var(--secondary);
+  color: var(--primary);
   border-radius: 0;
   font-size: 0.8rem;
   font-weight: 500;
@@ -1583,8 +1824,8 @@ button[type="submit"] {
 }
 
 .wp-block-button__link:hover {
-  background: var(--gold);
-  color: var(--slate);
+  background: var(--primary);
+  color: var(--secondary);
 }
 
 .wp-block-separator {
@@ -1617,16 +1858,16 @@ button[type="submit"] {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   border: 1px solid var(--rule);
-  color: var(--slate-md);
+  color: var(--secondary-md);
   text-decoration: none;
   transition: all var(--transition);
 }
 
 .pagination .page-numbers:hover,
 .pagination .page-numbers.current {
-  background: var(--slate);
-  color: var(--gold);
-  border-color: var(--slate);
+  background: var(--secondary);
+  color: var(--primary);
+  border-color: var(--secondary);
 }
 
 /* ============================================================
@@ -1647,6 +1888,17 @@ button[type="submit"] {
 [data-animate-delay="2"] { transition-delay: 0.2s; }
 [data-animate-delay="3"] { transition-delay: 0.3s; }
 [data-animate-delay="4"] { transition-delay: 0.4s; }
+[data-animate-delay="5"] { transition-delay: 0.5s; }
+[data-animate-delay="6"] { transition-delay: 0.6s; }
+[data-animate-delay="7"] { transition-delay: 0.7s; }
+[data-animate-delay="8"] { transition-delay: 0.8s; }
+[data-animate-delay="9"] { transition-delay: 0.9s; }
+[data-animate-delay="10"] { transition-delay: 0.10s; }
+[data-animate-delay="11"] { transition-delay: 0.11s; }
+[data-animate-delay="12"] { transition-delay: 0.12s; }
+[data-animate-delay="13"] { transition-delay: 0.13s; }
+[data-animate-delay="14"] { transition-delay: 0.14s; }
+[data-animate-delay="15"] { transition-delay: 0.15s; }
 
 /* ============================================================
    RESPONSIVE
@@ -1659,39 +1911,7 @@ button[type="submit"] {
 
 @media (max-width: 960px) {
   :root { --gap: 32px; }
-
-  #primary-nav .nav-menu,
-  .nav-cta { display: none; }
-
-  .menu-toggle { display: flex; }
-
-  #primary-nav.mobile-open .nav-menu {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--slate);
-    padding: 120px 40px 60px;
-    align-items: flex-start;
-    gap: 0;
-    z-index: 400;
-  }
-
-  #primary-nav.mobile-open .nav-menu > li > a {
-    font-size: 1.5rem;
-    font-family: var(--font-serif);
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--white);
-    padding: 14px 0;
-  }
-
-  #primary-nav.mobile-open .nav-cta {
-    display: inline-flex;
-    margin-top: 32px;
-    margin-left: 0;
-  }
-
+  
   .hero-stats { flex-wrap: wrap; gap: 32px; }
   .hero-stat { border-right: none; padding-right: 0; margin-right: 0; flex: 1 0 40%; }
 
@@ -1736,7 +1956,7 @@ button[type="submit"] {
    ACCESSIBILITY
    ============================================================ */
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--primary);
   outline-offset: 3px;
 }
 
@@ -1755,4 +1975,109 @@ button[type="submit"] {
 @media print {
   #site-header, #site-footer, .hero-section { display: none; }
   body { background: #fff; color: #000; }
+}
+
+/* ============================================================
+   GUTENBERG/BLOCK EDITOR SUPPORT
+   ============================================================ */
+
+/* Block widths */
+.wp-block {
+  max-width: 760px;
+}
+
+.alignwide {
+  max-width: 1200px;
+}
+
+.alignfull {
+  max-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Gutenberg color palette classes */
+.has-primary-color { color: var(--kc-primary) !important; }
+.has-primary-background-color { background-color: var(--kc-primary) !important; }
+.has-primary-lt-color { color: var(--kc-primary-lt) !important; }
+.has-primary-lt-background-color { background-color: var(--kc-primary-lt) !important; }
+.has-primary-dk-color { color: var(--kc-primary-dk) !important; }
+.has-primary-dk-background-color { background-color: var(--kc-primary-dk) !important; }
+.has-slate-color { color: var(--kc-slate) !important; }
+.has-slate-background-color { background-color: var(--kc-slate) !important; }
+.has-slate-md-color { color: var(--kc-slate-md) !important; }
+.has-slate-md-background-color { background-color: var(--kc-slate-md) !important; }
+.has-slate-lt-color { color: var(--kc-slate-lt) !important; }
+.has-slate-lt-background-color { background-color: var(--kc-slate-lt) !important; }
+.has-cream-color { color: var(--kc-cream) !important; }
+.has-cream-background-color { background-color: var(--kc-cream) !important; }
+.has-ink-color { color: var(--kc-ink) !important; }
+.has-ink-background-color { background-color: var(--kc-ink) !important; }
+.has-white-color { color: var(--kc-white) !important; }
+.has-white-background-color { background-color: var(--kc-white) !important; }
+
+/* Block spacing */
+.wp-block-group,
+.wp-block-cover,
+.wp-block-columns {
+  margin-bottom: 2rem;
+}
+
+/* Block quote */
+.wp-block-quote {
+  font-family: var(--kc-font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--kc-slate);
+  border-left: 3px solid var(--kc-primary);
+  padding-left: 32px;
+  margin: 2em 0;
+}
+
+.wp-block-quote cite {
+  font-family: var(--kc-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kc-slate-lt);
+  font-style: normal;
+}
+
+/* Block buttons */
+.wp-block-button__link {
+  font-family: var(--kc-font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 0;
+  transition: all 0.25s ease;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+/* Block separator */
+.wp-block-separator {
+  border-color: var(--kc-rule);
+  margin: 3em auto;
+}
+
+/* Block columns */
+.wp-block-columns {
+  gap: 40px;
+}
+
+/* Block cover */
+.wp-block-cover {
+  min-height: 400px;
+}
+
+/* Block gallery */
+.wp-block-gallery {
+  margin-bottom: 2em;
 }

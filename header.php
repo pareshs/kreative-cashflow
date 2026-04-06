@@ -43,8 +43,8 @@
         'fallback_cb'    => 'kc_fallback_nav',
       ]);
       ?>
-      <a href="<?php echo esc_url( kc_option( 'kc_hero_cta1_url', '/contact' ) ); ?>" class="nav-cta">
-        <?php echo esc_html( kc_option( 'kc_hero_cta1', 'Book Consultation' ) ); ?> &rarr;
+      <a href="<?php echo esc_url( kc_option( 'kc_hero_cta1_url', '#form' ) ); ?>" class="nav-cta">
+        <?php echo esc_html( kc_option( 'kc_hero_cta1', 'Book Strategy Session' ) ); ?> &rarr;
       </a>
     </nav>
 
